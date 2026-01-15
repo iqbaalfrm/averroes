@@ -4,6 +4,8 @@ namespace App\Models;
 
 class ReelItem extends BaseModel
 {
+    protected $table = 'reels_items';
+
     protected $fillable = [
         'theme',
         'text_ar',

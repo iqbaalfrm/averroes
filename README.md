@@ -38,7 +38,7 @@ Root `.env.example` lists required keys.
 ### Mobile
 Create `mobile/.env`:
 ```
-API_BASE_URL=http://localhost:8000/api
+API_BASE_URL=http://167.99.69.90/api
 ```
 
 ### Backend

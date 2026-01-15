@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace Database\Seeders;
 
@@ -11,7 +11,7 @@ class AdminUserSeeder extends Seeder
 {
     public function run(): void
     {
-        $email = env('ADMIN_EMAIL', 'admin@averroes.id');
+        $email = env('ADMIN_EMAIL', 'admin@averroes.web.id');
         $password = env('ADMIN_PASSWORD', 'Admin123!');
 
         $user = User::firstOrCreate(

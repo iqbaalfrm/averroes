@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace Database\Seeders;
 
@@ -135,8 +135,8 @@ class DummyContentSeeder extends Seeder
                 'cover_url' => null,
             ],
             [
-                'display_title' => 'Al-Ahkām al-Fiqhiyyah terkait Mata Uang Elektronik',
-                'original_title' => "a l - a h k ā m a l - f i q h i y y a h a l - m u t a ‘ a l l i q a b i l - ‘ u m a l a a t a l - i l i k t i r ū n i y y a h",
+                'display_title' => 'Al-Ahk?m al-Fiqhiyyah terkait Mata Uang Elektronik',
+                'original_title' => "a l - a h k ? m a l - f i q h i y y a h a l - m u t a ? a l l i q a b i l - ? u m a l a a t a l - i l i k t i r ? n i y y a h",
                 'author' => "Al-Majma' Al-Fiqhi",
                 'language' => 'ar',
                 'category' => 'Fiqh',
