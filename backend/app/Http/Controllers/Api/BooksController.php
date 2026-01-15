@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BookResource;
 use App\Models\Book;
 use App\Models\UserBookmark;
 use Illuminate\Http\Request;
@@ -11,15 +12,17 @@ class BooksController extends Controller
 {
     public function index()
     {
+        $books = Book::where('status', 'published')->orderBy('created_at', 'desc')->get();
+
         return response()->json([
-            'data' => Book::orderBy('created_at', 'desc')->get(),
+            'data' => BookResource::collection($books),
         ]);
     }
 
     public function show(string $id)
     {
         return response()->json([
-            'data' => Book::findOrFail($id),
+            'data' => new BookResource(Book::findOrFail($id)),
         ]);
     }
 
@@ -35,6 +38,8 @@ class BooksController extends Controller
             'description' => ['nullable', 'string'],
             'pdf_url' => ['required', 'string'],
             'cover_url' => ['nullable', 'string'],
+            'cover_image_url' => ['nullable', 'string'],
+            'status' => ['nullable', 'string'],
         ]);
 
         $book = Book::create($data);
@@ -54,6 +59,8 @@ class BooksController extends Controller
             'description' => ['nullable', 'string'],
             'pdf_url' => ['nullable', 'string'],
             'cover_url' => ['nullable', 'string'],
+            'cover_image_url' => ['nullable', 'string'],
+            'status' => ['nullable', 'string'],
         ]);
 
         $book = Book::findOrFail($id);

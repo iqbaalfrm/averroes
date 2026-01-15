@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ForumReplyResource;
+use App\Http\Resources\ForumThreadResource;
 use App\Models\ForumLike;
 use App\Models\ForumReply;
 use App\Models\ForumThread;
@@ -13,7 +15,9 @@ class ForumController extends Controller
 {
     public function index(Request $request)
     {
-        $query = ForumThread::query()->where('is_hidden', false);
+        $query = ForumThread::query()
+            ->where('is_hidden', false)
+            ->where('status', 'open');
 
         if ($category = $request->query('category')) {
             $query->where('category', $category);
@@ -27,7 +31,7 @@ class ForumController extends Controller
         }
 
         return response()->json([
-            'data' => $query->limit(50)->get(),
+            'data' => ForumThreadResource::collection($query->limit(50)->get()),
         ]);
     }
 
@@ -37,7 +41,7 @@ class ForumController extends Controller
             $query->orderBy('created_at');
         }])->findOrFail($id);
 
-        return response()->json(['data' => $thread]);
+        return response()->json(['data' => new ForumThreadResource($thread)]);
     }
 
     public function store(Request $request)
@@ -47,6 +51,7 @@ class ForumController extends Controller
             'body' => ['nullable', 'string'],
             'category' => ['required', 'string'],
             'is_anonymous' => ['boolean'],
+            'tags' => ['nullable', 'array'],
         ]);
 
         $thread = ForumThread::create([
@@ -55,9 +60,11 @@ class ForumController extends Controller
             'body' => $data['body'] ?? null,
             'category' => $data['category'],
             'is_anonymous' => $data['is_anonymous'] ?? false,
+            'tags' => $data['tags'] ?? [],
+            'status' => 'open',
         ]);
 
-        return response()->json(['data' => $thread], 201);
+        return response()->json(['data' => new ForumThreadResource($thread)], 201);
     }
 
     public function reply(Request $request, string $id)
@@ -83,7 +90,17 @@ class ForumController extends Controller
             return $reply;
         });
 
-        return response()->json(['data' => $reply], 201);
+        return response()->json(['data' => new ForumReplyResource($reply)], 201);
+    }
+
+    public function replyToThread(Request $request)
+    {
+        $data = $request->validate([
+            'thread_id' => ['required', 'string'],
+            'body' => ['required', 'string'],
+        ]);
+
+        return $this->reply($request, $data['thread_id']);
     }
 
     public function likeThread(Request $request, string $id)
@@ -138,6 +155,8 @@ class ForumController extends Controller
             'title' => ['sometimes', 'string'],
             'body' => ['nullable', 'string'],
             'category' => ['sometimes', 'string'],
+            'tags' => ['nullable', 'array'],
+            'status' => ['nullable', 'string'],
         ]);
 
         $thread->fill($data)->save();

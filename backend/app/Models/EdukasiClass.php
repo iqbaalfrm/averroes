@@ -11,10 +11,14 @@ class EdukasiClass extends BaseModel
         'subtitle',
         'level',
         'duration_text',
+        'duration_minutes',
         'lessons_count',
+        'short_desc',
         'description',
         'outcomes',
         'cover_theme',
+        'cover_image_url',
+        'status',
     ];
 
     protected $casts = [
@@ -24,5 +28,10 @@ class EdukasiClass extends BaseModel
     public function modules()
     {
         return $this->hasMany(ClassModule::class, 'class_id');
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(ClassLesson::class, 'class_id');
     }
 }

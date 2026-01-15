@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PortfolioAssetResource;
 use App\Models\PortfolioAsset;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,12 @@ class PortfolioController extends Controller
 {
     public function index(Request $request)
     {
+        $assets = PortfolioAsset::where('user_id', $request->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return response()->json([
-            'data' => PortfolioAsset::where('user_id', $request->user()->id)
-                ->orderBy('created_at', 'desc')
-                ->get(),
+            'data' => PortfolioAssetResource::collection($assets),
         ]);
     }
 
@@ -32,7 +35,7 @@ class PortfolioController extends Controller
             'user_id' => $request->user()->id,
         ]));
 
-        return response()->json(['data' => $asset], 201);
+        return response()->json(['data' => new PortfolioAssetResource($asset)], 201);
     }
 
     public function update(Request $request, string $id)
@@ -49,7 +52,7 @@ class PortfolioController extends Controller
         $asset = PortfolioAsset::where('user_id', $request->user()->id)->findOrFail($id);
         $asset->fill($data)->save();
 
-        return response()->json(['data' => $asset]);
+        return response()->json(['data' => new PortfolioAssetResource($asset)]);
     }
 
     public function destroy(Request $request, string $id)

@@ -62,7 +62,7 @@ class PustakaRepository {
       pages: row['pages'] as int?,
       description: row['description'] as String? ?? '',
       pdfUrl: row['pdf_url'] as String?,
-      coverUrl: row['cover_url'] as String?,
+      coverUrl: row['cover_image_url'] as String? ?? row['cover_url'] as String?,
       isPremium: false,
       isLocal: false,
     );

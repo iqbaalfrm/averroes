@@ -34,14 +34,14 @@ class NewsRepository {
   }
 
   NewsItem _mapRow(Map<String, dynamic> row) {
-    return NewsItem(
-      id: row['id']?.toString() ?? '',
-      title: row['title'] as String? ?? '',
-      source: row['source'] as String? ?? 'Google News',
-      url: row['url'] as String? ?? '',
-      imageUrl: row['image_url'] as String?,
-      publishedAt: DateTime.tryParse(row['published_at'] as String? ?? '') ??
+      return NewsItem(
+        id: row['id']?.toString() ?? '',
+        title: row['title'] as String? ?? '',
+        source: row['source'] as String? ?? 'Google News',
+        url: row['url'] as String? ?? '',
+      imageUrl: row['cover_image_url'] as String? ?? row['image_url'] as String?,
+        publishedAt: DateTime.tryParse(row['published_at'] as String? ?? '') ??
           DateTime.now(),
-    );
+      );
   }
 }

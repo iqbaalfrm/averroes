@@ -6,6 +6,7 @@ import 'edukasi_models.dart';
 import 'edukasi_repository.dart';
 import '../../services/auth_guard.dart';
 import '../../services/app_session_controller.dart';
+import '../../config/env_config.dart';
 
 class EdukasiController extends GetxController {
   final RxList<ClassModel> classes = <ClassModel>[].obs;
@@ -32,7 +33,24 @@ class EdukasiController extends GetxController {
 
   ClassModel get continueClass {
     if (classes.isEmpty) {
-      return edukasiDummyClasses().first;
+      if (!EnvConfig.isProduction) {
+        return edukasiDummyClasses().first;
+      }
+      return ClassModel(
+        id: 'empty',
+        title: '',
+        subtitle: '',
+        level: 'Pemula',
+        duration: '',
+        lessonsCount: 0,
+        progress: 0.0,
+        tags: const [],
+        coverTheme: CoverTheme.forest,
+        description: '',
+        outcomes: const [],
+        modules: const [],
+        isLocal: true,
+      );
     }
     return classes.firstWhere(
       (item) => item.progress > 0,
@@ -108,10 +126,12 @@ class EdukasiController extends GetxController {
       isLoading.value = true;
       errorMessage.value = '';
       final remoteClasses = await _repository.fetchClasses();
-      if (remoteClasses.isEmpty) {
+      if (remoteClasses.isNotEmpty) {
+        classes.assignAll(remoteClasses);
+      } else if (_session.isDemoMode.value && !EnvConfig.isProduction) {
         classes.assignAll(edukasiDummyClasses());
       } else {
-        classes.assignAll(remoteClasses);
+        classes.clear();
       }
 
       if (!_session.isGuest.value) {
@@ -120,7 +140,11 @@ class EdukasiController extends GetxController {
       }
     } catch (e) {
       errorMessage.value = 'Gagal memuat kelas edukasi.';
-      classes.assignAll(edukasiDummyClasses());
+      if (_session.isDemoMode.value && !EnvConfig.isProduction) {
+        classes.assignAll(edukasiDummyClasses());
+      } else {
+        classes.clear();
+      }
     } finally {
       isLoading.value = false;
     }

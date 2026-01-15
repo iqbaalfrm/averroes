@@ -9,6 +9,8 @@ use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\TagsInput;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -32,6 +34,13 @@ class ForumThreadResource extends Resource
             ->schema([
                 TextInput::make('title')->required(),
                 TextInput::make('category')->required(),
+                TagsInput::make('tags'),
+                Select::make('status')
+                    ->options([
+                        'open' => 'Open',
+                        'closed' => 'Closed',
+                    ])
+                    ->default('open'),
                 Textarea::make('body')->rows(4),
                 Toggle::make('is_hidden'),
                 Toggle::make('is_locked'),
@@ -44,6 +53,7 @@ class ForumThreadResource extends Resource
             ->columns([
                 TextColumn::make('title')->searchable()->limit(40),
                 TextColumn::make('category')->sortable(),
+                TextColumn::make('status')->sortable(),
                 TextColumn::make('reply_count')->label('Replies'),
                 TextColumn::make('like_count')->label('Likes'),
                 ToggleColumn::make('is_hidden'),

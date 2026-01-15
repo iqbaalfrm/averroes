@@ -40,10 +40,19 @@ class EdukasiClassResource extends Resource
                     ])
                     ->required(),
                 TextInput::make('duration_text')->label('Duration'),
+                TextInput::make('duration_minutes')->numeric(),
                 TextInput::make('lessons_count')->numeric(),
+                TextInput::make('short_desc')->label('Short Description'),
                 Textarea::make('description')->rows(3),
                 TagsInput::make('outcomes'),
                 TextInput::make('cover_theme'),
+                TextInput::make('cover_image_url')->label('Cover Image URL'),
+                Select::make('status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'published' => 'Published',
+                    ])
+                    ->default('published'),
             ]);
     }
 

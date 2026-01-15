@@ -10,11 +10,11 @@ class EdukasiRepository {
       if (rows.isEmpty) return [];
 
       return rows.map((row) {
-        final modules = _mapModules(row['modules']);
+        final modules = _mapModules(row['modules'], row['lessons']);
         return ClassModel(
           id: row['id'] as String,
           title: row['title'] as String? ?? '',
-          subtitle: row['subtitle'] as String? ?? '',
+          subtitle: row['short_desc'] as String? ?? row['subtitle'] as String? ?? '',
           level: row['level'] as String? ?? 'Pemula',
           duration: row['duration_text'] as String? ?? '',
           lessonsCount: row['lessons_count'] as int? ?? modules.fold<int>(
@@ -81,16 +81,26 @@ class EdukasiRepository {
     });
   }
 
-  List<ModuleModel> _mapModules(dynamic modules) {
-    if (modules is! List) return [];
-    return modules.map((module) {
-      final lessons = _mapLessons((module as Map<String, dynamic>)['lessons']);
-      return ModuleModel(
-        id: module['id'] as String,
-        title: module['title'] as String? ?? '',
-        lessons: lessons,
-      );
-    }).toList();
+  List<ModuleModel> _mapModules(dynamic modules, dynamic lessons) {
+    if (modules is List && modules.isNotEmpty) {
+      return modules.map((module) {
+        final lessons = _mapLessons((module as Map<String, dynamic>)['lessons']);
+        return ModuleModel(
+          id: module['id'] as String,
+          title: module['title'] as String? ?? '',
+          lessons: lessons,
+        );
+      }).toList();
+    }
+    final lessonList = _mapLessons(lessons);
+    if (lessonList.isEmpty) return [];
+    return [
+      ModuleModel(
+        id: 'default',
+        title: 'Materi',
+        lessons: lessonList,
+      ),
+    ];
   }
 
   List<LessonModel> _mapLessons(dynamic lessons) {

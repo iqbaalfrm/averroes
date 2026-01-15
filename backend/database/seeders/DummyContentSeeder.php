@@ -111,6 +111,7 @@ class DummyContentSeeder extends Seeder
             ClassLesson::updateOrCreate(
                 ['module_id' => $module->id, 'title' => 'Selamat Datang'],
                 [
+                    'class_id' => $class->id,
                     'type' => 'reading',
                     'duration_min' => 8,
                     'content' => 'Konten demo untuk lesson awal.',
@@ -133,6 +134,7 @@ class DummyContentSeeder extends Seeder
                 'description' => 'Ringkasan hukum fikih terkait uang kertas.',
                 'pdf_url' => 'https://drive.google.com/file/d/demo-fiat',
                 'cover_url' => null,
+                'status' => 'published',
             ],
             [
                 'display_title' => 'Al-Ahk?m al-Fiqhiyyah terkait Mata Uang Elektronik',
@@ -144,6 +146,7 @@ class DummyContentSeeder extends Seeder
                 'description' => 'Kajian mendalam tentang uang elektronik.',
                 'pdf_url' => 'https://drive.google.com/file/d/demo-electronic',
                 'cover_url' => null,
+                'status' => 'published',
             ],
         ];
 
@@ -178,8 +181,10 @@ class DummyContentSeeder extends Seeder
                 ['url' => 'https://news.example.com/item-' . $i],
                 [
                     'title' => 'Berita Crypto Syariah #' . $i,
+                    'slug' => 'berita-crypto-syariah-' . $i,
                     'source' => 'Averroes News',
                     'image_url' => null,
+                    'status' => 'published',
                     'published_at' => now()->subHours($i),
                 ]
             );

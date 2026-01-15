@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Akuntansi Koperasi - Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Dashboard Akuntansi Koperasi</h1>
+            <p class="text-gray-600">Modul Simpan Pinjam & Pembukuan Otomatis</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
+                <p class="text-sm text-gray-500 uppercase font-bold">Total Kas (111)</p>
+                <p class="text-2xl font-bold text-gray-800">Rp 48.350.000</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-500">
+                <p class="text-sm text-gray-500 uppercase font-bold">Piutang Pinjaman (121)</p>
+                <p class="text-2xl font-bold text-gray-800">Rp 12.000.000</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-purple-500">
+                <p class="text-sm text-gray-500 uppercase font-bold">Total Simpanan (21x)</p>
+                <p class="text-2xl font-bold text-gray-800">Rp 55.000.000</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-4 border-b bg-gray-50 flex justify-between items-center">
+                        <h2 class="font-bold text-gray-700">Jurnal Umum Terbaru</h2>
+                        <span class="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Double-Entry System</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 text-gray-600 uppercase text-xs">
+                                    <th class="p-4">Tanggal</th>
+                                    <th class="p-4">Keterangan / Akun</th>
+                                    <th class="p-4 text-right">Debet</th>
+                                    <th class="p-4 text-right">Kredit</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-gray-700 divide-y">
+                                <tr>
+                                    <td class="p-4" rowspan="2">15 Jan</td>
+                                    <td class="p-4 font-semibold text-blue-600">Kas (111)</td>
+                                    <td class="p-4 text-right">1.000.000</td>
+                                    <td class="p-4 text-right">-</td>
+                                </tr>
+                                <tr class="bg-blue-50/30">
+                                    <td class="p-4 pl-8 italic">Simpanan Sukarela (213)</td>
+                                    <td class="p-4 text-right">-</td>
+                                    <td class="text-right p-4 text-red-500">1.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 border-t" rowspan="2">16 Jan</td>
+                                    <td class="p-4 border-t font-semibold text-blue-600">Piutang Pinjaman (121)</td>
+                                    <td class="p-4 border-t text-right">5.000.000</td>
+                                    <td class="p-4 border-t text-right">-</td>
+                                </tr>
+                                <tr class="bg-blue-50/30">
+                                    <td class="p-4 pl-8 italic font-medium">Kas (111)</td>
+                                    <td class="p-4 text-right">-</td>
+                                    <td class="text-right p-4 text-red-500">5.000.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-4 border-b bg-gray-800 text-white">
+                        <h2 class="font-bold">Ringkasan Neraca</h2>
+                    </div>
+                    <div class="p-4 space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Total Aktiva (Aset)</span>
+                            <span class="font-bold">Rp 60.350.000</span>
+                        </div>
+                        <div class="flex justify-between text-sm border-b pb-2">
+                            <span class="text-gray-600">Total Pasiva (Hutang+Modal)</span>
+                            <span class="font-bold text-green-600">Rp 60.350.000</span>
+                        </div>
+                        <div class="text-center py-2 bg-green-100 text-green-700 text-xs font-bold rounded">
+                            STATUS: BALANCE ✅
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <div class="p-4 border-b bg-gray-50">
+                        <h2 class="font-bold text-gray-700 text-sm">Daftar Akun Utama</h2>
+                    </div>
+                    <ul class="text-xs divide-y">
+                        <li class="p-3 flex justify-between"><span>111 - Kas</span> <span class="text-gray-400">D</span></li>
+                        <li class="p-3 flex justify-between"><span>121 - Piutang</span> <span class="text-gray-400">D</span></li>
+                        <li class="p-3 flex justify-between"><span>211 - Simpanan Pokok</span> <span class="text-gray-400">K</span></li>
+                        <li class="p-3 flex justify-between"><span>411 - Pendapatan Bunga</span> <span class="text-gray-400">K</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="mt-12 text-center text-gray-400 text-sm">
+            &copy; 2026 Aplikasi Koperasi Mandiri - Modul Pembukuan v1.0
+        </footer>
+    </div>
+
+</body>
+</html>

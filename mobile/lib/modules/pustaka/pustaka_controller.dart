@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../services/app_session_controller.dart';
+import '../../config/env_config.dart';
 import '../../services/auth_guard.dart';
 import '../../widgets/custom_dialog.dart';
 import 'pustaka_dummy_data.dart';
@@ -56,11 +57,17 @@ class PustakaController extends GetxController {
       final remoteBooks = await _repository.fetchBooks();
       if (remoteBooks.isNotEmpty) {
         books.assignAll(remoteBooks);
-      } else {
+      } else if (_session.isDemoMode.value && !EnvConfig.isProduction) {
         books.assignAll(pustakaDummyBooks);
+      } else {
+        books.clear();
       }
     } catch (e) {
-      books.assignAll(pustakaDummyBooks);
+      if (_session.isDemoMode.value && !EnvConfig.isProduction) {
+        books.assignAll(pustakaDummyBooks);
+      } else {
+        books.clear();
+      }
       errorMessage.value = 'Tidak bisa memuat data pustaka.';
     } finally {
       isLoading.value = false;

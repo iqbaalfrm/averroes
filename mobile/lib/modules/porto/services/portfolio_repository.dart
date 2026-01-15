@@ -1,15 +1,16 @@
 import '../../../services/api_client.dart';
 import '../../../services/app_session_controller.dart';
+import '../../../config/env_config.dart';
 import '../models/portfolio_holding.dart';
 import 'package:get/get.dart';
 
 class PortfolioRepository {
   final AppSessionController _session = Get.find<AppSessionController>();
 
-  bool get isGuest => _session.isGuest.value;
+  bool get isDemoMode => _session.isDemoMode.value && !EnvConfig.isProduction;
 
   Future<List<PortfolioHolding>> getHoldings() async {
-    if (isGuest) {
+    if (isDemoMode) {
       return _getDummyHoldings();
     }
 
@@ -20,7 +21,8 @@ class PortfolioRepository {
       return rows.map((json) => PortfolioHolding.fromJson(json)).toList();
     } catch (e) {
       print('Repo: Fetch Error: $e');
-      return _getDummyHoldings();
+      if (isDemoMode) return _getDummyHoldings();
+      return [];
     }
   }
 
@@ -31,7 +33,8 @@ class PortfolioRepository {
     double? avgBuyPrice,
     String? notes,
   }) async {
-    if (isGuest) throw Exception('Login required');
+    if (isDemoMode) return; // Do nothing in demo
+    if (Get.find<AppSessionController>().isGuest.value) throw Exception('Login required');
 
     await ApiClient.post('/portfolio/assets', data: {
       'coin_code': coinCode,

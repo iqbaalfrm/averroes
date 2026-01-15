@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EdukasiClassResource;
 use App\Models\EdukasiClass;
 use App\Models\UserClassProgress;
 use Illuminate\Http\Request;
@@ -11,17 +12,15 @@ class EdukasiController extends Controller
 {
     public function index(Request $request)
     {
-        $withModules = $request->query('with_modules', '1') === '1';
-        $query = EdukasiClass::query();
-
-        if ($withModules) {
-            $query->with(['modules.lessons' => function ($lessonQuery) {
+        $query = EdukasiClass::query()
+            ->where('status', 'published')
+            ->with(['modules.lessons' => function ($lessonQuery) {
                 $lessonQuery->orderBy('sort_order');
-            }]);
-        }
+            }])
+            ->orderBy('created_at', 'desc');
 
         return response()->json([
-            'data' => $query->orderBy('created_at', 'desc')->get(),
+            'data' => EdukasiClassResource::collection($query->get()),
         ]);
     }
 
@@ -31,7 +30,7 @@ class EdukasiController extends Controller
             $query->orderBy('sort_order');
         }])->findOrFail($id);
 
-        return response()->json(['data' => $class]);
+        return response()->json(['data' => new EdukasiClassResource($class)]);
     }
 
     public function store(Request $request)
@@ -41,10 +40,14 @@ class EdukasiController extends Controller
             'subtitle' => ['nullable', 'string'],
             'level' => ['required', 'string'],
             'duration_text' => ['nullable', 'string'],
+            'duration_minutes' => ['nullable', 'integer'],
             'lessons_count' => ['nullable', 'integer'],
+            'short_desc' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
             'outcomes' => ['nullable', 'array'],
             'cover_theme' => ['nullable', 'string'],
+            'cover_image_url' => ['nullable', 'string'],
+            'status' => ['nullable', 'string'],
         ]);
 
         $class = EdukasiClass::create($data);
@@ -59,10 +62,14 @@ class EdukasiController extends Controller
             'subtitle' => ['nullable', 'string'],
             'level' => ['sometimes', 'string'],
             'duration_text' => ['nullable', 'string'],
+            'duration_minutes' => ['nullable', 'integer'],
             'lessons_count' => ['nullable', 'integer'],
+            'short_desc' => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
             'outcomes' => ['nullable', 'array'],
             'cover_theme' => ['nullable', 'string'],
+            'cover_image_url' => ['nullable', 'string'],
+            'status' => ['nullable', 'string'],
         ]);
 
         $class = EdukasiClass::findOrFail($id);

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../services/app_session_controller.dart';
+import '../../config/env_config.dart';
 import 'diskusi_dummy_data.dart';
 import 'diskusi_models.dart';
 import 'diskusi_repository.dart';
@@ -31,14 +32,20 @@ class DiskusiController extends GetxController {
       isLoading.value = true;
       errorMessage.value = '';
       final remoteThreads = await _repository.fetchThreads();
-      if (remoteThreads.isEmpty) {
+      if (remoteThreads.isNotEmpty) {
+        threads.assignAll(remoteThreads);
+      } else if (sessionController.isDemoMode.value && !EnvConfig.isProduction) {
         threads.assignAll(buildDiskusiDummyThreads());
       } else {
-        threads.assignAll(remoteThreads);
+        threads.clear();
       }
     } catch (e) {
       errorMessage.value = 'Gagal memuat diskusi.';
-      threads.assignAll(buildDiskusiDummyThreads());
+      if (sessionController.isDemoMode.value && !EnvConfig.isProduction) {
+        threads.assignAll(buildDiskusiDummyThreads());
+      } else {
+        threads.clear();
+      }
     } finally {
       isLoading.value = false;
     }

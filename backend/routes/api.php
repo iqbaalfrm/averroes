@@ -34,6 +34,7 @@ Route::get('me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 
 Route::get('articles', [NewsController::class, 'index']);
 Route::get('articles/latest', [NewsController::class, 'latest']);
+Route::get('articles/{slug}', [NewsController::class, 'show']);
 
 Route::get('screener', [ScreenerController::class, 'index']);
 Route::get('market', [MarketController::class, 'index']);
@@ -69,6 +70,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('forum/threads', [ForumController::class, 'store']);
     Route::post('forum/threads/{id}/replies', [ForumController::class, 'reply']);
+    Route::post('forum/replies', [ForumController::class, 'replyToThread']);
     Route::post('forum/threads/{id}/like', [ForumController::class, 'likeThread']);
     Route::post('forum/replies/{id}/like', [ForumController::class, 'likeReply']);
     Route::patch('forum/threads/{id}', [ForumController::class, 'update']);

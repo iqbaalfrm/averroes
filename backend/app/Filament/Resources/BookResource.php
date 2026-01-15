@@ -36,6 +36,8 @@ class BookResource extends Resource
                 Textarea::make('description')->rows(4),
                 TextInput::make('pdf_url')->required(),
                 TextInput::make('cover_url'),
+                TextInput::make('cover_image_url')->label('Cover Image URL'),
+                TextInput::make('status')->default('published'),
             ]);
     }
 

@@ -10,6 +10,8 @@ class ForumThread extends BaseModel
         'category',
         'title',
         'body',
+        'tags',
+        'status',
         'reply_count',
         'like_count',
         'is_hidden',
@@ -20,6 +22,7 @@ class ForumThread extends BaseModel
         'is_anonymous' => 'boolean',
         'is_hidden' => 'boolean',
         'is_locked' => 'boolean',
+        'tags' => 'array',
     ];
 
     public function replies()

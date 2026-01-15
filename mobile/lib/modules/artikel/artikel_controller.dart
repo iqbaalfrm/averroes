@@ -3,7 +3,9 @@ import 'package:get_storage/get_storage.dart';
 import 'dart:convert';
 
 import '../../core/domain/entities/article.dart';
-import '../../core/data/news_rss_remote_data_source.dart';
+import '../../services/api_client.dart';
+import '../../services/app_session_controller.dart';
+import '../../config/env_config.dart';
 
 /// =============================================================================
 /// ARTIKEL CONTROLLER
@@ -12,8 +14,8 @@ import '../../core/data/news_rss_remote_data_source.dart';
 /// =============================================================================
 
 class ArtikelController extends GetxController {
-  final NewsRssRemoteDataSource _dataSource = NewsRssRemoteDataSource();
   final GetStorage _storage = GetStorage();
+  final AppSessionController _session = Get.find<AppSessionController>();
 
   // Observable state
   final RxList<Article> articles = <Article>[].obs;
@@ -37,7 +39,7 @@ class ArtikelController extends GetxController {
     fetchArticles();
   }
 
-  /// Fetch articles dari RSS
+  /// Fetch articles dari API
   Future<void> fetchArticles({bool forceRefresh = false}) async {
     // Rate limiting check
     if (!forceRefresh && lastFetchTime.value != null) {
@@ -52,13 +54,20 @@ class ArtikelController extends GetxController {
       isLoading.value = true;
       errorMessage.value = '';
 
-      final fetchedArticles = await _dataSource.fetchArticles();
+      final response = await ApiClient.get('/articles', query: {
+        'per_page': 20,
+      });
+      final data = response.data as Map<String, dynamic>;
+      final rows = List<Map<String, dynamic>>.from(data['data'] ?? []);
+      final fetchedArticles = rows.map(_mapApiArticle).toList();
 
-      if (fetchedArticles.isEmpty) {
-        articles.assignAll(_dummyArticles);
-      } else {
+      if (fetchedArticles.isNotEmpty) {
         articles.assignAll(fetchedArticles);
         _saveToCache(fetchedArticles);
+      } else if (!_session.isDemoMode.value && !EnvConfig.isProduction) {
+        articles.assignAll(_dummyArticles);
+      } else {
+        articles.clear();
       }
       
       lastFetchTime.value = DateTime.now();
@@ -71,8 +80,8 @@ class ArtikelController extends GetxController {
       errorMessage.value = ''; // Don't show error to user if we have dummy/cache
       print('⚠️ [Artikel] Error: $e');
 
-      // Use dummy data as last resort
-      if (articles.isEmpty) {
+      // Use dummy data as last resort (dev only)
+      if (articles.isEmpty && !EnvConfig.isProduction) {
         articles.assignAll(_dummyArticles);
         _applyFilter();
       }
@@ -296,5 +305,20 @@ class ArtikelController extends GetxController {
     }
 
     return filters.toList();
+  }
+
+  Article _mapApiArticle(Map<String, dynamic> row) {
+    return Article(
+      id: row['id']?.toString() ?? '',
+      title: row['title'] as String? ?? '',
+      link: row['url'] as String? ?? '',
+      source: row['source'] as String? ?? 'Averroes',
+      publishedAt: DateTime.tryParse(row['published_at']?.toString() ?? '') ??
+          DateTime.now(),
+      snippet: row['excerpt'] as String? ?? row['content'] as String?,
+      imageUrl: row['cover_image_url'] as String? ?? row['image_url'] as String?,
+      queryTag: row['source'] as String? ?? 'Averroes',
+      content: row['content'] as String?,
+    );
   }
 }

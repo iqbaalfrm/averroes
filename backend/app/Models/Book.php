@@ -14,5 +14,7 @@ class Book extends BaseModel
         'description',
         'pdf_url',
         'cover_url',
+        'cover_image_url',
+        'status',
     ];
 }
