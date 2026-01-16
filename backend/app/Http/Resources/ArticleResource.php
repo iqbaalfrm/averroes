@@ -21,7 +21,7 @@ class ArticleResource extends JsonResource
             'cover_image_url' => $this->cover_image_url ?: $this->image_url,
             'source' => $this->source,
             'url' => $this->url,
-            'status' => $this->status ?? 'published',
+            'status' => $this->status ?? 'terbit',
             'published_at' => optional($this->published_at)->toISOString(),
             'created_by' => $this->created_by,
         ];

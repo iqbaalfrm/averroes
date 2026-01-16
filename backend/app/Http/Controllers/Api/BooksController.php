@@ -12,7 +12,7 @@ class BooksController extends Controller
 {
     public function index()
     {
-        $books = Book::where('status', 'published')->orderBy('created_at', 'desc')->get();
+        $books = Book::where('status', 'terbit')->orderBy('created_at', 'desc')->get();
 
         return response()->json([
             'data' => BookResource::collection($books),

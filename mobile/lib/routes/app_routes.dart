@@ -12,16 +12,16 @@ import '../modules/main_layout/main_layout_view.dart';
 
 abstract class Routes {
   static const SPLASH = '/';
-  static const ONBOARDING = '/onboarding';
-  static const AUTH_CHOICE = '/auth-choice';
-  static const LOGIN = '/login';
-  static const REGISTER = '/register';
-  static const VERIFY_EMAIL = '/verify-email';
-  static const HOME = '/home';
+  static const ONBOARDING = '/pengenalan';
+  static const AUTH_CHOICE = '/pilih-masuk';
+  static const LOGIN = '/masuk';
+  static const REGISTER = '/daftar';
+  static const VERIFY_EMAIL = '/verifikasi-email';
+  static const HOME = '/beranda';
   
   // Protected Routes
   static const EDUKASI = '/edukasi';
-  static const PORTFOLIO = '/portfolio';
+  static const PORTFOLIO = '/portofolio';
   static const ZAKAT = '/zakat';
 }
 

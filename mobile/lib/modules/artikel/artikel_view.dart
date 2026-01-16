@@ -240,7 +240,7 @@ class ArtikelView extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           const Text(
-            'Coba filter lain atau tarik ke bawah\nuntuk refresh',
+            'Coba saringan lain atau tarik ke bawah\nuntuk muat ulang',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,

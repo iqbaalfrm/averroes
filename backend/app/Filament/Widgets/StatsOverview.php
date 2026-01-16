@@ -14,10 +14,10 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Total Users', User::count()),
-            Stat::make('Total Articles', Article::count()),
-            Stat::make('Total Threads', ForumThread::count()),
-            Stat::make('Total Classes', EdukasiClass::count()),
+            Stat::make('Total Pengguna', User::count()),
+            Stat::make('Total Artikel', Article::count()),
+            Stat::make('Total Diskusi', ForumThread::count()),
+            Stat::make('Total Kelas', EdukasiClass::count()),
         ];
     }
 }

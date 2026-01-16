@@ -18,16 +18,16 @@ class NewsRssRemoteDataSource {
 
   /// RSS Feed URLs
   static const String _coinvestasiUrl =
-      'https://news.google.com/rss/search?q=site:coinvestasi.com%20crypto&hl=id&gl=ID&ceid=ID:id';
+      'https://news.google.com/rss/search?q=site:coinvestasi.com%20kripto&hl=id&gl=ID&ceid=ID:id';
   
   static const String _cryptowaveUrl =
-      'https://news.google.com/rss/search?q=site:cryptowave.id%20crypto&hl=id&gl=ID&ceid=ID:id';
+      'https://news.google.com/rss/search?q=site:cryptowave.id%20kripto&hl=id&gl=ID&ceid=ID:id';
   
   static const String _syariahUrl =
-      'https://news.google.com/rss/search?q=(crypto%20syariah%20OR%20fiqh%20muamalah%20crypto%20OR%20zakat%20crypto)&hl=id&gl=ID&ceid=ID:id';
+      'https://news.google.com/rss/search?q=(kripto%20syariah%20OR%20fiqh%20muamalah%20kripto%20OR%20zakat%20kripto)&hl=id&gl=ID&ceid=ID:id';
   
   static const String _marketUrl =
-      'https://news.google.com/rss/search?q=crypto%20indonesia%20harga%20bitcoin&hl=id&gl=ID&ceid=ID:id';
+      'https://news.google.com/rss/search?q=kripto%20indonesia%20harga%20bitcoin&hl=id&gl=ID&ceid=ID:id';
 
   /// Fetch all articles dengan strategy
   Future<List<Article>> fetchArticles() async {
@@ -41,7 +41,7 @@ class NewsRssRemoteDataSource {
         _fetchFromUrl(_coinvestasiUrl, 'Coinvestasi'),
         _fetchFromUrl(_cryptowaveUrl, 'Cryptowave'),
         _fetchFromUrl(_syariahUrl, 'Syariah'),
-        _fetchFromUrl(_marketUrl, 'Market'),
+        _fetchFromUrl(_marketUrl, 'Pasar'),
       ]);
 
       for (var list in results) {

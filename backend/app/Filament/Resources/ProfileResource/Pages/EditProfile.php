@@ -8,6 +8,8 @@ use Filament\Resources\Pages\EditRecord;
 class EditProfile extends EditRecord
 {
     protected static string $resource = ProfileResource::class;
+    protected static ?string $title = 'Ubah Profil Admin';
+    protected static ?string $breadcrumb = 'Ubah';
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
@@ -30,5 +32,10 @@ class EditProfile extends EditRecord
         if (! $shouldBeVerified && $user->hasVerifiedEmail()) {
             $user->forceFill(['email_verified_at' => null])->save();
         }
+    }
+
+    protected function getSavedNotificationTitle(): ?string
+    {
+        return 'Berhasil disimpan';
     }
 }

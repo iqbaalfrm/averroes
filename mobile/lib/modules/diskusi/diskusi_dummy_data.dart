@@ -12,7 +12,7 @@ List<DiskusiThread> buildDiskusiDummyThreads() {
       title: 'Apakah staking termasuk akad yang dibolehkan?',
       description:
           'Aku masih bingung apakah staking itu masuk kategori ijarah atau malah gharar. Ada yang punya referensi?',
-      category: 'Fiqh',
+      category: 'Fikih',
       author: userA,
       createdAt: DateTime.now().subtract(const Duration(hours: 2)),
       isLocal: true,
@@ -41,7 +41,7 @@ List<DiskusiThread> buildDiskusiDummyThreads() {
     ),
     DiskusiThread(
       id: 't2',
-      title: 'Tips sederhana biar nggak FOMO saat market rame',
+      title: 'Tips sederhana biar nggak takut ketinggalan saat pasar rame',
       description:
           'Ada cara praktis supaya tetap tenang dan nggak ikut-ikutan?',
       category: 'Refleksi',
@@ -66,7 +66,7 @@ List<DiskusiThread> buildDiskusiDummyThreads() {
       id: 't3',
       title: 'Zakat untuk aset digital yang baru 6 bulan?',
       description:
-          'Kalau aset crypto belum sampai 1 tahun tapi nilainya sudah nisab, apakah wajib zakat?',
+          'Kalau aset kripto belum sampai 1 tahun tapi nilainya sudah nisab, apakah wajib zakat?',
       category: 'Zakat',
       author: userB,
       createdAt: DateTime.now().subtract(const Duration(days: 1, hours: 3)),
@@ -87,10 +87,10 @@ List<DiskusiThread> buildDiskusiDummyThreads() {
     ),
     DiskusiThread(
       id: 't4',
-      title: 'Bagaimana menilai proyek crypto dari sisi syariah?',
+      title: 'Bagaimana menilai proyek kripto dari sisi syariah?',
       description:
           'Apa indikator utama biar nggak salah pilih proyek?',
-      category: 'Crypto',
+      category: 'Kripto',
       author: userC,
       createdAt: DateTime.now().subtract(const Duration(days: 2, hours: 1)),
       isLocal: true,

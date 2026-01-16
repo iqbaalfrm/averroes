@@ -3,15 +3,19 @@
 namespace App\Filament\Resources\ForumThreadResource\Pages;
 
 use App\Filament\Resources\ForumThreadResource;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Resources\Pages\EditRecord;
 
 class ListForumThreads extends ListRecords
 {
     protected static string $resource = ForumThreadResource::class;
-}
+    protected static ?string $title = 'Diskusi';
+    protected static ?string $breadcrumb = 'Diskusi';
 
-class EditForumThread extends EditRecord
-{
-    protected static string $resource = ForumThreadResource::class;
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\CreateAction::make()->label('Tambah'),
+        ];
+    }
 }

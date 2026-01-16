@@ -16,7 +16,7 @@ class NewsController extends Controller
         $perPage = (int) $request->query('per_page', 20);
 
         $query = Article::query()
-            ->where('status', 'published')
+            ->where('status', 'terbit')
             ->orderByDesc('published_at');
 
         if ($limit > 0) {
@@ -31,7 +31,7 @@ class NewsController extends Controller
     public function latest(Request $request)
     {
         $limit = (int) $request->query('limit', 5);
-        $articles = Article::where('status', 'published')
+        $articles = Article::where('status', 'terbit')
             ->orderByDesc('published_at')
             ->limit($limit)
             ->get();

@@ -371,7 +371,7 @@ class EdukasiHomeView extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Text(
-              'Filter cepat',
+              'Saring cepat',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -425,7 +425,7 @@ class _PopularCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tag = classModel.tags.isNotEmpty ? classModel.tags.first : 'Trending';
+    final tag = classModel.tags.isNotEmpty ? classModel.tags.first : 'Sedang Tren';
     return GestureDetector(
       onTap: onTap,
       child: Container(

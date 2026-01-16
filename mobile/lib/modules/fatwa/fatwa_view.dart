@@ -12,11 +12,11 @@ class FatwaController extends GetxController {
 
   final List<Map<String, dynamic>> fatwaList = [
     {
-      'title': 'Hukum Jual Beli Cryptocurrency',
+      'title': 'Hukum Jual Beli Aset Kripto',
       'source': 'DSN MUI (Simulasi)',
       'date': '12 Januari 2024',
       'status': 'Mubah dengan Syarat',
-      'summary': 'Cryptocurrency diperbolehkan untuk diperjualbelikan dengan syarat memenuhi kriteria sebagai komoditas digital yang memiliki nilai ekonomis dan manfaat yang jelas.',
+      'summary': 'Aset kripto diperbolehkan untuk diperjualbelikan dengan syarat memenuhi kriteria sebagai komoditas digital yang memiliki nilai ekonomis dan manfaat yang jelas.',
       'points': [
         'Bukan untuk spekulasi semata',
         'Ada underlying value atau utility',
@@ -26,11 +26,11 @@ class FatwaController extends GetxController {
       'category': 'Proses',
     },
     {
-      'title': 'Zakat Aset Cryptocurrency',
+      'title': 'Zakat Aset Kripto',
       'source': 'DSN MUI (Simulasi)',
       'date': '5 Februari 2024',
       'status': 'Wajib',
-      'summary': 'Cryptocurrency yang telah mencapai nisab dan haul wajib dikeluarkan zakatnya sebesar 2.5% dari total nilai aset pada saat jatuh tempo.',
+      'summary': 'Aset kripto yang telah mencapai nisab dan haul wajib dikeluarkan zakatnya sebesar 2.5% dari total nilai aset pada saat jatuh tempo.',
       'points': [
         'Nisab setara 85 gram emas',
         'Haul 1 tahun hijriyah',
@@ -68,14 +68,14 @@ class FatwaController extends GetxController {
       'category': 'Halal',
     },
     {
-      'title': 'Mining Bitcoin dan Cryptocurrency',
+      'title': 'Penambangan Bitcoin dan Kripto',
       'source': 'Majelis Ulama (Simulasi)',
       'date': '15 Mei 2024',
       'status': 'Mubah',
-      'summary': 'Aktivitas mining cryptocurrency diperbolehkan karena merupakan bentuk jasa pemrosesan transaksi dengan imbalan yang jelas.',
+      'summary': 'Aktivitas penambangan kripto diperbolehkan karena merupakan bentuk jasa pemrosesan transaksi dengan imbalan yang jelas.',
       'points': [
         'Termasuk kategori ijarah (jasa)',
-        'Imbalan dari jaringan blockchain',
+        'Imbalan dari jaringan rantai blok',
         'Tidak mengandung unsur riba',
         'Perhatikan aspek lingkungan',
       ],
@@ -157,7 +157,7 @@ class FatwaView extends StatelessWidget {
                         const SizedBox(width: 16),
                         const Expanded(
                           child: Text(
-                            'Fatwa Crypto Syariah',
+                            'Fatwa & Kajian Kripto Syariah',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -169,7 +169,7 @@ class FatwaView extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     const Text(
-                      'Kumpulan fatwa dan panduan syariah tentang cryptocurrency',
+                      'Kumpulan fatwa dan panduan syariah tentang aset kripto',
                       style: TextStyle(
                         fontSize: 14,
                         color: MuamalahColors.textSecondary,

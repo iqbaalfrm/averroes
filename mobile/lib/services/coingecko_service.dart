@@ -202,7 +202,7 @@ class CoinGeckoService {
         print('⚠️ [CoinGecko] Rate limited, using cache');
         return _getCachedPrices(symbolToId.keys.toList());
       } else {
-        throw Exception('API Error: ${response.statusCode}');
+        throw Exception('Kesalahan API: ${response.statusCode}');
       }
     } on TimeoutException {
       print('⚠️ [CoinGecko] Timeout, using cache');

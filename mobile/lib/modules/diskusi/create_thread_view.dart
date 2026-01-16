@@ -16,12 +16,12 @@ class CreateThreadView extends StatefulWidget {
 class _CreateThreadViewState extends State<CreateThreadView> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
-  final RxString _selectedCategory = 'Fiqh'.obs;
+  final RxString _selectedCategory = 'Fikih'.obs;
   final RxBool _isAnonymous = false.obs;
 
   final List<String> _categories = const [
-    'Fiqh',
-    'Crypto',
+    'Fikih',
+    'Kripto',
     'Zakat',
     'Edukasi',
     'Pustaka',

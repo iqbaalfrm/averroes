@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../theme/app_theme.dart';
 import '../../services/app_session_controller.dart';
+import '../../routes/app_routes.dart';
 
 /// =============================================================================
 /// ONBOARDING CONTROLLER
@@ -45,7 +46,7 @@ class OnboardingController extends GetxController {
     await sessionController.markOnboardingComplete();
     
     // Go straight to Home (bypass AuthChoice)
-    Get.offAllNamed('/home'); 
+    Get.offAllNamed(Routes.HOME); 
   }
 
   Future<void> joinAsGuest() async {
@@ -56,7 +57,7 @@ class OnboardingController extends GetxController {
     sessionController.enableDemoMode();
     await sessionController.markOnboardingComplete();
     
-    Get.offAllNamed('/home'); 
+    Get.offAllNamed(Routes.HOME); 
   }
 
   @override
@@ -89,15 +90,15 @@ class OnboardingView extends StatelessWidget {
             children: [
               _buildPage(
                 title: "Ngatur Aset,\nTetap Tenang",
-                subtitle: "Biar paham crypto & keuangan,\ntanpa ninggalin prinsip syariah.",
+                subtitle: "Biar paham kripto & keuangan,\ntanpa ninggalin prinsip syariah.",
                 imagePath: "assets/ui/illustrations/onboarding_1.png",
                 fallbackIcon: Icons.spa_rounded,
                 color: MuamalahColors.primaryEmerald,
                 lightColor: MuamalahColors.mint,
               ),
               _buildPage(
-                title: "Belajar Fiqh,\nNggak Ribet",
-                subtitle: "Dari fiqh muamalah sampai\ncrypto syariah, semua pelan-pelan.",
+                title: "Belajar Fikih,\nNggak Ribet",
+                subtitle: "Dari fikih muamalah sampai\nkripto syariah, semua pelan-pelan.",
                 imagePath: "assets/ui/illustrations/onboarding_2.png",
                 fallbackIcon: Icons.menu_book_rounded,
                 color: const Color(0xFFD97706), // Warm Orange
@@ -105,7 +106,7 @@ class OnboardingView extends StatelessWidget {
               ),
               _buildPage(
                 title: "Biar Cuan,\nTetap Berkah",
-                subtitle: "Pantau aset, hitung zakat,\ndan refleksi diri — dalam satu aplikasi.",
+                subtitle: "Pantau aset, hitung zakat,\ndan refleksi diri dalam satu aplikasi.",
                 imagePath: "assets/ui/illustrations/onboarding_3.png",
                 fallbackIcon: Icons.volunteer_activism_rounded,
                 color: const Color(0xFF4F46E5), // Indigo

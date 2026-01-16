@@ -69,7 +69,7 @@ class CovalentApiService {
       final response = await _client.get(uri).timeout(
         const Duration(seconds: 15),
         onTimeout: () {
-          throw TimeoutException('Koneksi timeout');
+          throw TimeoutException('Batas waktu koneksi habis');
         },
       );
 
@@ -114,7 +114,7 @@ class CovalentApiService {
       } else if (response.statusCode == 429) {
         throw const HttpException('Rate limit exceeded');
       } else {
-        throw HttpException('Error ${response.statusCode}');
+        throw HttpException('Kesalahan ${response.statusCode}');
       }
     } on SocketException {
       throw const SocketException('Tidak ada koneksi internet');
@@ -135,7 +135,7 @@ class CovalentApiService {
       print('⚠️ [Portfolio] Chain error: $e');
       return ChainBalanceResult(
         chainId: 0,
-        chainName: 'Error',
+        chainName: 'Gagal',
         tokens: [],
         totalValueUsd: 0,
       );

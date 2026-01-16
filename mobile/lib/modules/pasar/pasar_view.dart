@@ -19,7 +19,7 @@ class PasarController extends GetxController {
   final RxString volume24h = '\$89.2B'.obs;
   final RxDouble btcDominance = 48.5.obs;
 
-  final List<String> filters = ['Semua', 'Top 10', 'Gainers', 'Losers'];
+  final List<String> filters = ['Semua', 'Teratas 10', 'Naik', 'Turun'];
 
   late final CoinGeckoApiClient _apiClient;
   final MarketRepository _repository = MarketRepository();
@@ -81,11 +81,11 @@ class PasarController extends GetxController {
   List<CryptoMarketItem> get displayedCrypto {
     var list = cryptoMarket.toList();
 
-    if (selectedFilter.value == 'Top 10') {
+    if (selectedFilter.value == 'Teratas 10') {
       list = list.take(10).toList();
-    } else if (selectedFilter.value == 'Gainers') {
+    } else if (selectedFilter.value == 'Naik') {
       list = list.where((item) => item.isUp).toList();
-    } else if (selectedFilter.value == 'Losers') {
+    } else if (selectedFilter.value == 'Turun') {
       list = list.where((item) => !item.isUp).toList();
     }
 
@@ -167,7 +167,7 @@ class PasarView extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: const EdgeInsets.only(left: 20, bottom: 16),
                 title: const Text(
-                  'Pantau Pasar',
+                  'Pantau Pasar Kripto',
                   style: TextStyle(
                     color: MuamalahColors.textPrimary,
                     fontWeight: FontWeight.bold,
@@ -274,7 +274,7 @@ class PasarView extends StatelessWidget {
                     const SizedBox(width: 8),
                     Obx(
                       () => Text(
-                        'Global Cap: ${controller.globalMarketCap.value}',
+                        'Kapitalisasi Global: ${controller.globalMarketCap.value}',
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
@@ -291,7 +291,7 @@ class PasarView extends StatelessWidget {
                     const SizedBox(width: 8),
                     Obx(
                       () => Text(
-                        'BTC Dominance: ${controller.btcDominance.value.toStringAsFixed(1)}%',
+                        'Dominasi BTC: ${controller.btcDominance.value.toStringAsFixed(1)}%',
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,

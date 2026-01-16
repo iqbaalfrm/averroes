@@ -34,4 +34,14 @@ class EdukasiClass extends BaseModel
     {
         return $this->hasMany(ClassLesson::class, 'class_id');
     }
+
+    public function exam()
+    {
+        return $this->hasOne(ClassExam::class, 'class_id');
+    }
+
+    public function certificates()
+    {
+        return $this->hasMany(ClassCertificate::class, 'class_id');
+    }
 }

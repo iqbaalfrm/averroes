@@ -112,7 +112,7 @@ class PortfolioController extends GetxController {
           fetchPortfolio();
         } catch (e) {
           Get.back();
-          Get.snackbar('Error', 'Gagal menambahkan aset: $e', backgroundColor: Colors.red, colorText: Colors.white);
+          Get.snackbar('Gagal', 'Gagal menambahkan aset: $e', backgroundColor: Colors.red, colorText: Colors.white);
         }
       },
     );
@@ -131,7 +131,7 @@ class PortfolioController extends GetxController {
           fetchPortfolio();
         } catch (e) {
           Get.back();
-          Get.snackbar('Error', 'Gagal update aset: $e', backgroundColor: Colors.red, colorText: Colors.white);
+          Get.snackbar('Gagal', 'Gagal memperbarui aset: $e', backgroundColor: Colors.red, colorText: Colors.white);
         }
       },
     );
@@ -149,7 +149,7 @@ class PortfolioController extends GetxController {
           fetchPortfolio();
         } catch (e) {
           Get.back();
-          Get.snackbar('Error', 'Gagal hapus aset: $e', backgroundColor: Colors.red, colorText: Colors.white);
+          Get.snackbar('Gagal', 'Gagal menghapus aset: $e', backgroundColor: Colors.red, colorText: Colors.white);
         }
       },
     );

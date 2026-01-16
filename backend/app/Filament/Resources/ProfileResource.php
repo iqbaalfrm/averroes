@@ -13,13 +13,17 @@ use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Actions;
 
 class ProfileResource extends Resource
 {
     protected static ?string $model = Profile::class;
-    protected static ?string $navigationGroup = 'Sistem';
+    protected static ?string $navigationGroup = 'Pengaturan';
     protected static ?string $navigationIcon = 'heroicon-o-users';
-    protected static ?string $navigationLabel = 'Users';
+    protected static ?string $navigationLabel = 'Profil Admin';
+    protected static ?string $modelLabel = 'Profil Admin';
+    protected static ?string $pluralModelLabel = 'Profil Admin';
+    protected static ?string $slug = 'profil-admin';
 
     public static function canViewAny(): bool
     {
@@ -30,12 +34,13 @@ class ProfileResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('email')->disabled(),
-                TextInput::make('display_name')->label('Display Name'),
+                TextInput::make('email')->label('Email')->disabled(),
+                TextInput::make('display_name')->label('Nama Tampilan'),
                 Toggle::make('email_verified')
-                    ->label('Email Verified')
+                    ->label('Email Terverifikasi')
                     ->dehydrated(false),
                 Select::make('role')
+                    ->label('Peran')
                     ->options([
                         'admin' => 'admin',
                         'editor' => 'editor',
@@ -43,7 +48,7 @@ class ProfileResource extends Resource
                         'user' => 'user',
                     ])
                     ->required(),
-                Toggle::make('is_banned')->label('Banned'),
+                Toggle::make('is_banned')->label('Diblokir'),
             ]);
     }
 
@@ -51,15 +56,23 @@ class ProfileResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('email')->searchable(),
-                TextColumn::make('display_name')->label('Display Name')->searchable(),
-                TextColumn::make('role')->sortable(),
+                TextColumn::make('email')->label('Email')->searchable(),
+                TextColumn::make('display_name')->label('Nama Tampilan')->searchable(),
+                TextColumn::make('role')->label('Peran')->sortable(),
                 TextColumn::make('user.email_verified_at')
-                    ->label('Verified')
+                    ->label('Verifikasi')
                     ->formatStateUsing(fn ($state) => $state ? 'Terverifikasi' : 'Belum')
                     ->badge(),
-                ToggleColumn::make('is_banned')->label('Banned'),
-                TextColumn::make('created_at')->dateTime()->sortable(),
+                ToggleColumn::make('is_banned')->label('Diblokir'),
+                TextColumn::make('created_at')->label('Dibuat')->dateTime()->sortable(),
+            ])
+            ->actions([
+                Actions\ViewAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Actions\DeleteBulkAction::make(),
             ])
             ->defaultSort('created_at', 'desc');
     }
@@ -68,6 +81,8 @@ class ProfileResource extends Resource
     {
         return [
             'index' => Pages\ListProfiles::route('/'),
+            'create' => Pages\CreateProfile::route('/create'),
+            'view' => Pages\ViewProfile::route('/{record}'),
             'edit' => Pages\EditProfile::route('/{record}/edit'),
         ];
     }

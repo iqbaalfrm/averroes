@@ -24,7 +24,7 @@ class SettingsHomeView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildHeader('Settings', Icons.settings_rounded),
+            _buildHeader('Pengaturan', Icons.settings_rounded),
             const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -33,7 +33,7 @@ class SettingsHomeView extends StatelessWidget {
                   _buildLinkTile('Preferensi Syariah', Icons.mosque_outlined, onTap: () {
                     Get.to(() => const PreferensiSyariahView());
                   }),
-                  _buildLinkTile('Notifikasi', Icons.notifications_outlined, onTap: () {
+                  _buildLinkTile('Pemberitahuan', Icons.notifications_outlined, onTap: () {
                     Get.to(() => const NotifikasiSettingsView());
                   }),
                   _buildLinkTile('Tentang Aplikasi', Icons.info_outline_rounded, onTap: () {
@@ -338,7 +338,7 @@ class NotifikasiSettingsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildHeader('Notifikasi', Icons.notifications_outlined),
+            _buildHeader('Pemberitahuan', Icons.notifications_outlined),
 
             const SizedBox(height: 24),
 
@@ -348,7 +348,7 @@ class NotifikasiSettingsView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Preferensi Notifikasi',
+                    'Preferensi Pemberitahuan',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -359,28 +359,28 @@ class NotifikasiSettingsView extends StatelessWidget {
 
                   Obx(() => _buildSwitchTile(
                     'Peringatan Harga',
-                    'Notifikasi saat harga mencapai target',
+                    'Pemberitahuan saat harga mencapai target',
                     Icons.trending_up_rounded,
                     priceAlert.value,
                     (v) => priceAlert.value = v,
                   )),
                   Obx(() => _buildSwitchTile(
                     'Pengingat Zakat',
-                    'Notifikasi saat waktu bayar zakat',
+                    'Pemberitahuan saat waktu bayar zakat',
                     Icons.volunteer_activism_outlined,
                     zakatAlert.value,
                     (v) => zakatAlert.value = v,
                   )),
                   Obx(() => _buildSwitchTile(
-                    'Berita & Update',
-                    'Info terbaru tentang crypto syariah',
+                    'Berita & Pembaruan',
+                    'Info terbaru tentang kripto syariah',
                     Icons.article_outlined,
                     newsAlert.value,
                     (v) => newsAlert.value = v,
                   )),
                   Obx(() => _buildSwitchTile(
                     'Pengingat Sholat',
-                    'Notifikasi waktu sholat',
+                    'Pemberitahuan waktu sholat',
                     Icons.access_time_rounded,
                     prayerReminder.value,
                     (v) => prayerReminder.value = v,
@@ -446,7 +446,7 @@ class TentangAplikasiView extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'CryptoSyariah',
+                    'Averroes',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -486,7 +486,7 @@ class TentangAplikasiView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Tentang CryptoSyariah',
+                      'Tentang Averroes',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -495,7 +495,7 @@ class TentangAplikasiView extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      'CryptoSyariah adalah platform edukasi dan panduan investasi cryptocurrency yang sesuai dengan prinsip-prinsip syariah Islam. Aplikasi ini dikembangkan untuk membantu umat Muslim memahami dan berpartisipasi dalam ekonomi digital dengan tetap menjaga nilai-nilai keislaman.',
+                      'Averroes adalah platform edukasi dan panduan investasi aset kripto yang sesuai dengan prinsip-prinsip syariah Islam. Aplikasi ini dikembangkan untuk membantu umat Muslim memahami dan berpartisipasi dalam ekonomi digital dengan tetap menjaga nilai-nilai keislaman.',
                       style: TextStyle(
                         fontSize: 14,
                         color: MuamalahColors.textSecondary,
@@ -504,7 +504,7 @@ class TentangAplikasiView extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Fitur utama meliputi screener halal, kalkulator zakat, edukasi fiqh muamalah, dan panduan investasi yang amanah.',
+                      'Fitur utama meliputi penyaring aset syariah, kalkulator zakat, edukasi fikih muamalah, dan panduan investasi yang amanah.',
                       style: TextStyle(
                         fontSize: 14,
                         color: MuamalahColors.textSecondary,
@@ -536,7 +536,7 @@ class TentangAplikasiView extends StatelessWidget {
             // Copyright
             Center(
               child: Text(
-                '© 2024 CryptoSyariah. Semua hak cipta dilindungi.',
+                '© 2024 Averroes. Semua hak cipta dilindungi.',
                 style: TextStyle(
                   fontSize: 12,
                   color: MuamalahColors.textMuted,

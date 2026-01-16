@@ -3,47 +3,73 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ForumThreadResource\Pages;
-use App\Filament\Support\RoleHelper;
+use App\Filament\Resources\ForumThreadResource\RelationManagers;
 use App\Models\ForumThread;
+use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\TagsInput;
-use Filament\Forms\Components\Select;
 use Filament\Resources\Resource;
+use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ToggleColumn;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ForumThreadResource extends Resource
 {
     protected static ?string $model = ForumThread::class;
-    protected static ?string $navigationGroup = 'Diskusi';
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
-    protected static ?string $navigationLabel = 'Threads';
 
-    public static function canViewAny(): bool
-    {
-        return RoleHelper::hasRole(['admin', 'moderator']);
-    }
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
+    protected static ?string $navigationGroup = 'Diskusi';
+    protected static ?string $navigationLabel = 'Diskusi';
+    protected static ?string $modelLabel = 'Diskusi';
+    protected static ?string $pluralModelLabel = 'Diskusi';
+    protected static ?string $slug = 'diskusi';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title')->required(),
-                TextInput::make('category')->required(),
-                TagsInput::make('tags'),
-                Select::make('status')
+                Forms\Components\TextInput::make('user_id')
+                    ->label('Pengguna')
+                    ->maxLength(36)
+                    ->default(null),
+                Forms\Components\Toggle::make('is_anonymous')
+                    ->label('Anonim')
+                    ->required(),
+                Forms\Components\TextInput::make('category')
+                    ->label('Kategori')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('title')
+                    ->label('Judul')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('body')
+                    ->label('Isi Diskusi')
+                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('reply_count')
+                    ->label('Jumlah Balasan')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
+                Forms\Components\TextInput::make('like_count')
+                    ->label('Jumlah Suka')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
+                Forms\Components\Toggle::make('is_hidden')
+                    ->label('Disembunyikan')
+                    ->required(),
+                Forms\Components\Toggle::make('is_locked')
+                    ->label('Dikunci')
+                    ->required(),
+                Forms\Components\Select::make('status')
+                    ->label('Status')
                     ->options([
-                        'open' => 'Open',
-                        'closed' => 'Closed',
+                        'terbuka' => 'Terbuka',
+                        'ditutup' => 'Ditutup',
                     ])
-                    ->default('open'),
-                Textarea::make('body')->rows(4),
-                Toggle::make('is_hidden'),
-                Toggle::make('is_locked'),
+                    ->default('terbuka')
+                    ->required(),
             ]);
     }
 
@@ -51,22 +77,77 @@ class ForumThreadResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')->searchable()->limit(40),
-                TextColumn::make('category')->sortable(),
-                TextColumn::make('status')->sortable(),
-                TextColumn::make('reply_count')->label('Replies'),
-                TextColumn::make('like_count')->label('Likes'),
-                ToggleColumn::make('is_hidden'),
-                ToggleColumn::make('is_locked'),
-                TextColumn::make('created_at')->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('user_id')
+                    ->label('Pengguna')
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('is_anonymous')
+                    ->label('Anonim')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('category')
+                    ->label('Kategori')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('reply_count')
+                    ->label('Balasan')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('like_count')
+                    ->label('Suka')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\IconColumn::make('is_hidden')
+                    ->label('Disembunyikan')
+                    ->boolean(),
+                Tables\Columns\IconColumn::make('is_locked')
+                    ->label('Dikunci')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('created_at', 'desc');
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
     }
 
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListForumThreads::route('/'),
+            'create' => Pages\CreateForumThread::route('/create'),
+            'view' => Pages\ViewForumThread::route('/{record}'),
             'edit' => Pages\EditForumThread::route('/{record}/edit'),
         ];
     }

@@ -68,7 +68,7 @@ class NotificationService {
     const channel = AndroidNotificationChannel(
       'prayer_times',
       'Waktu Sholat',
-      description: 'Notifikasi pengingat dan adzan waktu sholat',
+      description: 'Pemberitahuan pengingat dan adzan waktu sholat',
       importance: Importance.high,
       playSound: true,
       enableVibration: true,
@@ -169,7 +169,7 @@ class NotificationService {
           android: AndroidNotificationDetails(
             'prayer_times',
             'Waktu Sholat',
-            channelDescription: 'Notifikasi pengingat dan adzan waktu sholat',
+            channelDescription: 'Pemberitahuan pengingat dan adzan waktu sholat',
             importance: Importance.high,
             priority: Priority.high,
             icon: '@mipmap/ic_launcher',
@@ -219,8 +219,8 @@ class NotificationService {
 
     await _notifications.show(
       0,
-      'Test Notifikasi',
-      'Notifikasi berfungsi dengan baik!',
+      'Uji Pemberitahuan',
+      'Pemberitahuan berfungsi dengan baik!',
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'prayer_times',

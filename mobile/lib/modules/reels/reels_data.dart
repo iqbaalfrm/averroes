@@ -1,7 +1,7 @@
 /// =============================================================================
 /// REELS DATA - Dummy Data untuk Konten Hikmah Islami
 /// =============================================================================
-/// Konten mikro: Ayat, Hadits, dan Quote tentang Fiqh Muamalah, Takdir, Sabar, Qonaah
+/// Konten mikro: Ayat, Hadits, dan Quote tentang Fikih Muamalah, Takdir, Sabar, Qonaah
 /// 
 /// DISCLAIMER: Konten ini untuk edukasi. Referensi hadits yang kurang kuat
 /// ditandai sebagai "riwayat masyhur" untuk transparansi.
@@ -24,7 +24,7 @@ extension ReelCategoryExtension on ReelCategory {
       case ReelCategory.semua:
         return 'Semua';
       case ReelCategory.fiqhMuamalah:
-        return 'Fiqh Muamalah';
+        return 'Fikih Muamalah';
       case ReelCategory.takdir:
         return 'Takdir';
       case ReelCategory.sabar:
@@ -237,7 +237,7 @@ const List<ReelItem> dummyReelsData = [
     category: ReelCategory.takdir,
     type: ReelType.hadith,
     indonesia: 'Sungguh menakjubkan urusan seorang mukmin. Semua urusannya adalah baik baginya.',
-    reflection: 'Bersyukur saat senang dan bersabar saat susah—keduanya adalah kebaikan.',
+    reflection: 'Bersyukur saat senang dan bersabar saat susah - keduanya adalah kebaikan.',
     source: 'HR. Muslim',
     tags: ['mukmin', 'syukur', 'sabar'],
     isHadithStrong: true,
@@ -290,7 +290,7 @@ const List<ReelItem> dummyReelsData = [
     type: ReelType.ayat,
     arabic: 'إِنَّمَا يُوَفَّى الصَّابِرُونَ أَجْرَهُمْ بِغَيْرِ حِسَابٍ',
     indonesia: 'Sesungguhnya orang-orang yang sabar akan disempurnakan pahala mereka tanpa batas.',
-    reflection: 'Pahala kesabaran tidak terhingga—inilah investasi terbaik.',
+    reflection: 'Pahala kesabaran tidak terhingga - inilah investasi terbaik.',
     source: 'QS. Az-Zumar: 10',
     tags: ['sabar', 'pahala', 'tanpa-batas'],
   ),
@@ -402,7 +402,7 @@ const List<ReelItem> dummyReelsData = [
     type: ReelType.ayat,
     arabic: 'وَمَا بِكُمْ مِنْ نِعْمَةٍ فَمِنَ اللَّهِ',
     indonesia: 'Dan nikmat apa pun yang ada padamu, maka itu dari Allah.',
-    reflection: 'Semua nikmat adalah pemberian—bukan hasil usaha semata.',
+    reflection: 'Semua nikmat adalah pemberian - bukan hasil usaha semata.',
     source: 'QS. An-Nahl: 53',
     tags: ['nikmat', 'Allah', 'syukur'],
   ),

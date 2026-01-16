@@ -90,10 +90,10 @@ class EnvConfig {
   // ===========================================================================
 
   /// Privacy Policy URL - ganti dengan URL asli untuk production
-  static const String privacyPolicyUrl = 'https://averroes.app/privacy-policy';
+  static const String privacyPolicyUrl = 'https://averroes.app/kebijakan-privasi';
   
   /// Terms of Service URL
-  static const String termsOfServiceUrl = 'https://averroes.app/terms';
+  static const String termsOfServiceUrl = 'https://averroes.app/syarat-ketentuan';
   
   /// Support Email
   static const String supportEmail = 'support@averroes.app';

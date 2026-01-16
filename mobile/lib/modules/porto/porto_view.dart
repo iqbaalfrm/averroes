@@ -161,7 +161,7 @@ class PortoView extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          const Text('Est. P/L', style: TextStyle(color: Colors.white38, fontSize: 12)),
+          const Text('Estimasi L/R', style: TextStyle(color: Colors.white38, fontSize: 12)),
         ],
       );
     });
@@ -175,7 +175,7 @@ class PortoView extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.edit, color: Colors.blueAccent),
-              title: const Text('Edit', style: TextStyle(color: Colors.white)),
+              title: const Text('Ubah', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Get.back();
                 Get.bottomSheet(
@@ -202,7 +202,7 @@ class PortoView extends StatelessWidget {
   void _confirmDelete(BuildContext context, PortfolioController controller, PortfolioHolding item) {
     Get.defaultDialog(
       title: 'Hapus Aset?',
-      middleText: 'Apakah Anda yakin ingin menghapus ${item.name} from portofolio?',
+      middleText: 'Apakah Anda yakin ingin menghapus ${item.name} dari portofolio?',
       textConfirm: 'Hapus',
       textCancel: 'Batal',
       confirmTextColor: Colors.white,

@@ -183,7 +183,7 @@ class ScreenerView extends StatelessWidget {
               ),
               centerTitle: true,
               title: const Text(
-                'Screener',
+                'Penyaring Aset Syariah',
                 style: TextStyle(
                   color: MuamalahColors.textPrimary,
                   fontWeight: FontWeight.bold,
@@ -415,7 +415,7 @@ class ScreenerView extends StatelessWidget {
                      Row(
                       children: [
                         Text(
-                        '${crypto.price} • MC: ${crypto.marketCap}',
+                        '${crypto.price} - Kapitalisasi: ${crypto.marketCap}',
                         style: const TextStyle(
                           fontSize: 11,
                           color: MuamalahColors.textMuted,

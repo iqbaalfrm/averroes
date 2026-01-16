@@ -61,7 +61,7 @@ class ScreeningNoticeDialog extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   const Text(
-                    'Metodologi Screening\nCrypto Syariah',
+                    'Metodologi Penyaringan\nKripto Syariah',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,
@@ -83,7 +83,7 @@ class ScreeningNoticeDialog extends StatelessWidget {
                   children: [
                     // Intro
                     const Text(
-                      'Metode screening ini disusun dan ditelaah oleh:',
+                      'Metode penyaringan ini disusun dan ditelaah oleh:',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -130,7 +130,7 @@ class ScreeningNoticeDialog extends StatelessWidget {
                     // Point 2
                     _buildNumberedSection(
                       '2',
-                      'Mengacu pada beberapa lembaga penilaian crypto internasional untuk memastikan status setiap koin/token.',
+                      'Mengacu pada beberapa lembaga penilaian kripto internasional untuk memastikan status setiap koin/token.',
                       [],
                     ),
 

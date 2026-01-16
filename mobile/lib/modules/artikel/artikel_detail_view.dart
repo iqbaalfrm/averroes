@@ -177,7 +177,7 @@ class ArtikelDetailView extends StatelessWidget {
         if (article.id.startsWith('dummy')) ...[
            const SizedBox(height: 16),
            const Text(
-            "Beberapa ulama dan dewan syariah di berbagai negara telah mulai mengeluarkan panduan terkait teknologi blockchain. Kesimpulan umumnya menunjukkan bahwa blockchain sebagai teknologi adalah netral, namun penggunaannya (seperti jenis token dan mekanisme konsensus) itulah yang menentukan status hukumnya. \n\nOleh karena itu, sangat penting bagi para investor untuk melakukan 'Self-Screening' atau menggunakan platform yang menyediakan filter syariah terpercaya seperti Averroes untuk memastikan setiap aset yang dibeli sesuai dengan koridor Fiqh Muamalah.",
+            "Beberapa ulama dan dewan syariah di berbagai negara telah mulai mengeluarkan panduan terkait teknologi rantai blok. Kesimpulan umumnya menunjukkan bahwa rantai blok sebagai teknologi bersifat netral, namun penggunaannya (seperti jenis token dan mekanisme konsensus) itulah yang menentukan status hukumnya. \n\nOleh karena itu, sangat penting bagi para investor untuk melakukan penyaringan mandiri atau menggunakan platform yang menyediakan penyaring syariah terpercaya seperti Averroes untuk memastikan setiap aset yang dibeli sesuai dengan koridor fikih muamalah.",
             style: TextStyle(
               fontSize: 16,
               color: MuamalahColors.textPrimary,

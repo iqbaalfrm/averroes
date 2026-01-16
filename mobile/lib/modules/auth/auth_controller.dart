@@ -25,7 +25,7 @@ class AuthController extends GetxController {
       });
 
       if (response.statusCode == 201) {
-        _showSuccess('Registrasi berhasil! Kode OTP sudah dikirim.');
+        _showSuccess('Pendaftaran berhasil! Kode OTP sudah dikirim.');
         final cooldown = response.data?['resend_cooldown'];
         Get.offAllNamed(
           Routes.VERIFY_EMAIL,
@@ -58,19 +58,19 @@ class AuthController extends GetxController {
       if (response.statusCode == 200) {
         final token = response.data['token']?.toString();
         if (token == null || token.isEmpty) {
-          _showError('Token login tidak valid.');
+        _showError('Token masuk tidak valid.');
           return;
         }
 
         final session = Get.find<AppSessionController>();
         await session.setToken(token);
 
-        _showSuccess('Login berhasil!');
+        _showSuccess('Berhasil masuk!');
         Get.offAllNamed(Routes.HOME);
         return;
       }
 
-      final message = response.data?['message']?.toString() ?? 'Email atau password salah.';
+      final message = response.data?['message']?.toString() ?? 'Email atau kata sandi salah.';
       final code = response.data?['code']?.toString();
       if (response.statusCode == 403 && code == 'EMAIL_NOT_VERIFIED') {
         _showInfo(message);
@@ -98,14 +98,14 @@ class AuthController extends GetxController {
       });
 
       if (response.statusCode == 200) {
-        _showSuccess('Email reset password telah dikirim.');
+        _showSuccess('Email pemulihan kata sandi telah dikirim.');
         return true;
       }
 
-      _showError(response.data?['message']?.toString() ?? 'Gagal mengirim email reset.');
+      _showError(response.data?['message']?.toString() ?? 'Gagal mengirim email pemulihan.');
       return false;
     } catch (e) {
-      _showError('Gagal mengirim email reset.');
+      _showError('Gagal mengirim email pemulihan.');
       return false;
     } finally {
       isLoading.value = false;

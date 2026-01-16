@@ -165,7 +165,7 @@ class _NewsCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    '${item.source} • ${relativeTime(item.publishedAt)}',
+                    '${item.source} - ${relativeTime(item.publishedAt)}',
                     style: const TextStyle(
                       fontSize: 11,
                       color: MuamalahColors.textMuted,

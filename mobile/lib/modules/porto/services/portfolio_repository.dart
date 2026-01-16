@@ -34,7 +34,7 @@ class PortfolioRepository {
     String? notes,
   }) async {
     if (isDemoMode) return; // Do nothing in demo
-    if (Get.find<AppSessionController>().isGuest.value) throw Exception('Login required');
+    if (Get.find<AppSessionController>().isGuest.value) throw Exception('Harus masuk terlebih dahulu');
 
     await ApiClient.post('/portfolio/assets', data: {
       'coin_code': coinCode,
@@ -52,7 +52,7 @@ class PortfolioRepository {
     double? avgBuyPrice,
     String? notes,
   }) async {
-    if (isGuest) throw Exception('Login required');
+    if (isGuest) throw Exception('Harus masuk terlebih dahulu');
 
     await ApiClient.patch('/portfolio/assets/$id', data: {
       'amount': amount,
@@ -62,7 +62,7 @@ class PortfolioRepository {
   }
 
   Future<void> deleteHolding(String id) async {
-    if (isGuest) throw Exception('Login required');
+    if (isGuest) throw Exception('Harus masuk terlebih dahulu');
 
     await ApiClient.delete('/portfolio/assets/$id');
   }

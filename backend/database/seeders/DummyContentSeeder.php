@@ -134,7 +134,7 @@ class DummyContentSeeder extends Seeder
                 'description' => 'Ringkasan hukum fikih terkait uang kertas.',
                 'pdf_url' => 'https://drive.google.com/file/d/demo-fiat',
                 'cover_url' => null,
-                'status' => 'published',
+                'status' => 'terbit',
             ],
             [
                 'display_title' => 'Al-Ahk?m al-Fiqhiyyah terkait Mata Uang Elektronik',
@@ -146,7 +146,7 @@ class DummyContentSeeder extends Seeder
                 'description' => 'Kajian mendalam tentang uang elektronik.',
                 'pdf_url' => 'https://drive.google.com/file/d/demo-electronic',
                 'cover_url' => null,
-                'status' => 'published',
+                'status' => 'terbit',
             ],
         ];
 
@@ -184,7 +184,7 @@ class DummyContentSeeder extends Seeder
                     'slug' => 'berita-crypto-syariah-' . $i,
                     'source' => 'Averroes News',
                     'image_url' => null,
-                    'status' => 'published',
+                    'status' => 'terbit',
                     'published_at' => now()->subHours($i),
                 ]
             );

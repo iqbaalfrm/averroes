@@ -186,7 +186,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
               const SizedBox(height: 24),
 
               const Text(
-                'Lupa Password?',
+                'Lupa Kata Sandi?',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -195,7 +195,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
               ),
               const SizedBox(height: 8),
               const Text(
-                'Masukkan email Anda dan kami akan mengirimkan link untuk reset password.',
+                'Masukkan email Anda dan kami akan mengirimkan tautan untuk pemulihan kata sandi.',
                 style: TextStyle(
                   fontSize: 14,
                   color: MuamalahColors.textSecondary,
@@ -267,7 +267,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                               ),
                               SizedBox(width: 12),
                               Text(
-                                'Kirim Link Reset',
+                                'Kirim Tautan Pemulihan',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -287,7 +287,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 child: GestureDetector(
                   onTap: () => Get.off(() => const LoginView()),
                   child: const Text(
-                    'Kembali ke Halaman Login',
+                    'Kembali ke Halaman Masuk',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -353,7 +353,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
               ),
               const SizedBox(height: 12),
               Text(
-                'Kami telah mengirimkan link reset password ke ${_emailController.text.trim()}',
+                'Kami telah mengirimkan tautan pemulihan kata sandi ke ${_emailController.text.trim()}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 14,
@@ -381,7 +381,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                     SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        'Cek folder inbox dan spam email Anda. Link akan kadaluarsa dalam 1 jam.',
+                        'Cek folder inbox dan spam email Anda. Tautan akan kedaluwarsa dalam 1 jam.',
                         style: TextStyle(
                           fontSize: 12,
                           color: MuamalahColors.textSecondary,
@@ -419,7 +419,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   ),
                   child: const Center(
                     child: Text(
-                      'Kembali ke Login',
+                      'Kembali ke Halaman Masuk',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

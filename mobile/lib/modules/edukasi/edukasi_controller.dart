@@ -61,7 +61,7 @@ class EdukasiController extends GetxController {
   List<ClassModel> get popularClasses {
     final withTags = classes
         .where((item) => item.tags.any(
-              (tag) => tag == 'Populer' || tag == 'Trending' || tag == 'Rekomendasi',
+              (tag) => tag == 'Populer' || tag == 'Sedang Tren' || tag == 'Rekomendasi',
             ))
         .toList();
     if (withTags.isNotEmpty) {
@@ -73,16 +73,16 @@ class EdukasiController extends GetxController {
   List<Map<String, String>> get forYouItems {
     final suggestions = [
       {
-        'title': 'Dasar Crypto Syariah',
+        'title': 'Dasar Kripto Syariah',
         'reason': 'Cocok buat pemula yang baru mulai',
       },
       {
-        'title': 'Fiqh Muamalah untuk Aset Digital',
+        'title': 'Fikih Muamalah untuk Aset Digital',
         'reason': 'Biar makin mantap soal akad',
       },
       {
-        'title': 'Menghindari Gharar & Maisir dalam Trading',
-        'reason': 'Relevan buat kamu yang aktif trading',
+        'title': 'Menghindari Gharar & Maisir dalam Perdagangan',
+        'reason': 'Relevan buat kamu yang aktif berdagang',
       },
       {
         'title': 'Zakat Aset Digital',
@@ -274,5 +274,31 @@ class EdukasiController extends GetxController {
       progress: classModel.progress,
       completedLessons: completed,
     );
+  }
+
+  Future<ExerciseModel?> fetchLessonExercise(String lessonId) async {
+    return _repository.fetchLessonExercise(lessonId);
+  }
+
+  Future<Map<String, dynamic>?> submitLessonExercise(
+    String lessonId,
+    List<Map<String, String?>> answers,
+  ) async {
+    return _repository.submitLessonExercise(lessonId, answers);
+  }
+
+  Future<ExamModel?> fetchClassExam(String classId) async {
+    return _repository.fetchClassExam(classId);
+  }
+
+  Future<Map<String, dynamic>?> submitClassExam(
+    String classId,
+    List<Map<String, String?>> answers,
+  ) async {
+    return _repository.submitClassExam(classId, answers);
+  }
+
+  Future<List<CertificateModel>> fetchCertificates() async {
+    return _repository.fetchCertificates();
   }
 }

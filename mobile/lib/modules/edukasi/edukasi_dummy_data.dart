@@ -3,7 +3,7 @@ import 'edukasi_models.dart';
 List<ClassModel> edukasiDummyClasses() {
   final dasarCrypto = ClassModel(
     id: 'class_crypto_dasar',
-    title: 'Dasar Crypto Syariah',
+    title: 'Dasar Kripto Syariah',
     subtitle: 'Kenalan dari nol, biar aman melangkah',
     level: 'Pemula',
     duration: '2 Jam',
@@ -12,21 +12,21 @@ List<ClassModel> edukasiDummyClasses() {
     tags: ['Baru', 'Rekomendasi'],
     coverTheme: CoverTheme.forest,
     description:
-        'Mulai dari istilah, cara kerja, sampai cara baca market yang tetap selaras syariah.',
+        'Mulai dari istilah, cara kerja, sampai cara baca pasar yang tetap selaras syariah.',
     outcomes: [
-      'Ngerti istilah dasar crypto',
+      'Ngerti istilah dasar kripto',
       'Paham beda halal, haram, dan syubhat proses',
-      'Bisa baca market secara basic',
+      'Bisa baca pasar secara dasar',
     ],
     isLocal: true,
     modules: [
       ModuleModel(
         id: 'mod_dasar_1',
-        title: 'Peta Dasar Crypto',
+        title: 'Peta Dasar Kripto',
         lessons: [
           LessonModel(
             id: 'lesson_dasar_1',
-            title: 'Crypto itu apa sih?',
+            title: 'Kripto itu apa sih?',
             type: LessonType.reading,
             durationMin: 8,
             summary: 'Gambaran besar tentang aset digital dan kenapa ramai.',
@@ -36,7 +36,7 @@ List<ClassModel> edukasiDummyClasses() {
             title: 'Istilah yang wajib kenal',
             type: LessonType.reading,
             durationMin: 10,
-            summary: 'Wallet, exchange, gas fee, dan teman-temannya.',
+            summary: 'Dompet, bursa, biaya gas, dan teman-temannya.',
           ),
           LessonModel(
             id: 'lesson_dasar_3',
@@ -49,7 +49,7 @@ List<ClassModel> edukasiDummyClasses() {
       ),
       ModuleModel(
         id: 'mod_dasar_2',
-        title: 'Cara Baca Market Basic',
+        title: 'Cara Baca Pasar Dasar',
         lessons: [
           LessonModel(
             id: 'lesson_dasar_4',
@@ -97,9 +97,9 @@ List<ClassModel> edukasiDummyClasses() {
     ],
   );
 
-  final fiqhMuamalah = ClassModel(
-    id: 'class_fiqh_muamalah',
-    title: 'Fiqh Muamalah untuk Aset Digital',
+  final fikihMuamalah = ClassModel(
+    id: 'class_fikih_muamalah',
+    title: 'Fikih Muamalah untuk Aset Digital',
     subtitle: 'Prinsip syariah biar transaksi lebih tenang',
     level: 'Menengah',
     duration: '3 Jam',
@@ -108,7 +108,7 @@ List<ClassModel> edukasiDummyClasses() {
     tags: ['Menengah', 'Populer'],
     coverTheme: CoverTheme.sand,
     description:
-        'Menguatkan landasan fiqh muamalah untuk memahami transaksi aset digital.',
+        'Menguatkan landasan fikih muamalah untuk memahami transaksi aset digital.',
     outcomes: [
       'Memahami kaidah muamalah utama',
       'Bisa membedakan akad yang sah',
@@ -117,11 +117,11 @@ List<ClassModel> edukasiDummyClasses() {
     isLocal: true,
     modules: [
       ModuleModel(
-        id: 'mod_fiqh_1',
-        title: 'Pijakan Fiqh',
+        id: 'mod_fikih_1',
+        title: 'Pijakan Fikih',
         lessons: [
           LessonModel(
-            id: 'lesson_fiqh_1',
+            id: 'lesson_fikih_1',
             title: 'Muamalah itu luas',
             type: LessonType.reading,
             durationMin: 9,
@@ -129,7 +129,7 @@ List<ClassModel> edukasiDummyClasses() {
             isCompleted: true,
           ),
           LessonModel(
-            id: 'lesson_fiqh_2',
+            id: 'lesson_fikih_2',
             title: 'Akad dan niat',
             type: LessonType.video,
             durationMin: 13,
@@ -137,7 +137,7 @@ List<ClassModel> edukasiDummyClasses() {
             isCompleted: true,
           ),
           LessonModel(
-            id: 'lesson_fiqh_3',
+            id: 'lesson_fikih_3',
             title: 'Riba, gharar, maysir',
             type: LessonType.reading,
             durationMin: 11,
@@ -147,32 +147,32 @@ List<ClassModel> edukasiDummyClasses() {
         ],
       ),
       ModuleModel(
-        id: 'mod_fiqh_2',
+        id: 'mod_fikih_2',
         title: 'Aplikasi ke Aset Digital',
         lessons: [
           LessonModel(
-            id: 'lesson_fiqh_4',
+            id: 'lesson_fikih_4',
             title: 'Studi kasus token',
             type: LessonType.video,
             durationMin: 10,
             summary: 'Melihat contoh nyata di lapangan.',
           ),
           LessonModel(
-            id: 'lesson_fiqh_5',
+            id: 'lesson_fikih_5',
             title: 'Kapan dianggap spekulasi',
             type: LessonType.reading,
             durationMin: 8,
             summary: 'Batas halus antara investasi dan judi.',
           ),
           LessonModel(
-            id: 'lesson_fiqh_6',
-            title: 'Checklist syariah sebelum entry',
+            id: 'lesson_fikih_6',
+            title: 'Checklist syariah sebelum masuk',
             type: LessonType.audio,
             durationMin: 6,
             summary: 'Checklist ringkas biar lebih yakin.',
           ),
           LessonModel(
-            id: 'lesson_fiqh_7',
+            id: 'lesson_fikih_7',
             title: 'Tanya ahli: kasus nyata',
             type: LessonType.video,
             durationMin: 12,
@@ -181,25 +181,25 @@ List<ClassModel> edukasiDummyClasses() {
         ],
       ),
       ModuleModel(
-        id: 'mod_fiqh_3',
+        id: 'mod_fikih_3',
         title: 'Merapikan Langkah',
         lessons: [
           LessonModel(
-            id: 'lesson_fiqh_8',
+            id: 'lesson_fikih_8',
             title: 'Ringkasan poin penting',
             type: LessonType.reading,
             durationMin: 7,
             summary: 'Catatan kecil sebelum lanjut.',
           ),
           LessonModel(
-            id: 'lesson_fiqh_9',
+            id: 'lesson_fikih_9',
             title: 'Latihan keputusan',
             type: LessonType.reading,
             durationMin: 8,
             summary: 'Simulasi biar makin mantap.',
           ),
           LessonModel(
-            id: 'lesson_fiqh_10',
+            id: 'lesson_fikih_10',
             title: 'Doa dan adab investor',
             type: LessonType.audio,
             durationMin: 5,
@@ -288,8 +288,8 @@ List<ClassModel> edukasiDummyClasses() {
 
   final ghararMaisir = ClassModel(
     id: 'class_gharar_maisir',
-    title: 'Menghindari Gharar & Maisir dalam Trading',
-    subtitle: 'Biar trading tetap aman dan jelas',
+    title: 'Menghindari Gharar & Maisir dalam Perdagangan',
+    subtitle: 'Biar perdagangan tetap aman dan jelas',
     level: 'Menengah',
     duration: '2.5 Jam',
     lessonsCount: 9,
@@ -297,10 +297,10 @@ List<ClassModel> edukasiDummyClasses() {
     tags: ['Wajib Tahu'],
     coverTheme: CoverTheme.clay,
     description:
-        'Bedah risiko gharar dan maisir agar trading lebih terarah.',
+        'Bedah risiko gharar dan maisir agar perdagangan lebih terarah.',
     outcomes: [
-      'Paham bentuk gharar di market',
-      'Bisa membedakan trading dan spekulasi',
+      'Paham bentuk gharar di pasar',
+      'Bisa membedakan perdagangan dan spekulasi',
       'Memiliki batasan pribadi yang jelas',
     ],
     isLocal: true,
@@ -338,21 +338,21 @@ List<ClassModel> edukasiDummyClasses() {
         lessons: [
           LessonModel(
             id: 'lesson_gharar_4',
-            title: 'Batasan entry yang sehat',
+            title: 'Batasan masuk yang sehat',
             type: LessonType.reading,
             durationMin: 10,
             summary: 'Biar tetap terukur.',
           ),
           LessonModel(
             id: 'lesson_gharar_5',
-            title: 'Contoh kasus trading',
+            title: 'Contoh kasus perdagangan',
             type: LessonType.video,
             durationMin: 12,
             summary: 'Belajar dari skenario nyata.',
           ),
           LessonModel(
             id: 'lesson_gharar_6',
-            title: 'Checklist sebelum buy',
+            title: 'Checklist sebelum beli',
             type: LessonType.audio,
             durationMin: 6,
             summary: 'Ringkas dan mudah dipakai.',
@@ -368,7 +368,7 @@ List<ClassModel> edukasiDummyClasses() {
             title: 'Latihan menyusun batasan',
             type: LessonType.reading,
             durationMin: 9,
-            summary: 'Bangun SOP sederhana.',
+            summary: 'Bangun prosedur sederhana.',
           ),
           LessonModel(
             id: 'lesson_gharar_8',
@@ -391,7 +391,7 @@ List<ClassModel> edukasiDummyClasses() {
 
   final auditSmartContract = ClassModel(
     id: 'class_audit',
-    title: 'Audit Smart Contract (Konsep Syariah)',
+    title: 'Audit Kontrak Pintar (Konsep Syariah)',
     subtitle: 'Belajar menilai kontrak dengan kacamata syariah',
     level: 'Mahir',
     duration: '4 Jam',
@@ -400,9 +400,9 @@ List<ClassModel> edukasiDummyClasses() {
     tags: ['Lanjutan'],
     coverTheme: CoverTheme.dusk,
     description:
-        'Memahami konsep audit smart contract dan relevansinya dalam muamalah.',
+        'Memahami konsep audit kontrak pintar dan relevansinya dalam muamalah.',
     outcomes: [
-      'Paham alur audit smart contract',
+      'Paham alur audit kontrak pintar',
       'Bisa membaca potensi pelanggaran syariah',
       'Siap berdiskusi dengan tim teknis',
     ],
@@ -414,7 +414,7 @@ List<ClassModel> edukasiDummyClasses() {
         lessons: [
           LessonModel(
             id: 'lesson_audit_1',
-            title: 'Smart contract 101',
+            title: 'Kontrak pintar dasar',
             type: LessonType.reading,
             durationMin: 12,
             summary: 'Struktur kontrak digital modern.',
@@ -424,11 +424,11 @@ List<ClassModel> edukasiDummyClasses() {
             title: 'Risiko yang sering muncul',
             type: LessonType.video,
             durationMin: 15,
-            summary: 'Bug, celah, dan potensi pelanggaran.',
+            summary: 'Celah teknis dan potensi pelanggaran.',
           ),
           LessonModel(
             id: 'lesson_audit_3',
-            title: 'Mapping ke prinsip syariah',
+            title: 'Pemetaan ke prinsip syariah',
             type: LessonType.reading,
             durationMin: 11,
             summary: 'Mencari titik kritis sesuai muamalah.',
@@ -438,7 +438,7 @@ List<ClassModel> edukasiDummyClasses() {
             title: 'Checklist audit ringkas',
             type: LessonType.audio,
             durationMin: 8,
-            summary: 'Checklist sebelum kamu review.',
+            summary: 'Checklist sebelum kamu meninjau.',
           ),
         ],
       ),
@@ -455,14 +455,14 @@ List<ClassModel> edukasiDummyClasses() {
           ),
           LessonModel(
             id: 'lesson_audit_6',
-            title: 'Kasus DeFi sederhana',
+            title: 'Kasus keuangan terdesentralisasi sederhana',
             type: LessonType.reading,
             durationMin: 10,
             summary: 'Kapan skema mulai riskan.',
           ),
           LessonModel(
             id: 'lesson_audit_7',
-            title: 'Latihan review singkat',
+            title: 'Latihan tinjauan singkat',
             type: LessonType.reading,
             durationMin: 9,
             summary: 'Latihan biar makin paham.',
@@ -482,7 +482,7 @@ List<ClassModel> edukasiDummyClasses() {
         lessons: [
           LessonModel(
             id: 'lesson_audit_9',
-            title: 'Menyusun SOP audit',
+            title: 'Menyusun prosedur audit standar',
             type: LessonType.reading,
             durationMin: 12,
             summary: 'Biar prosesnya konsisten.',
@@ -526,7 +526,7 @@ List<ClassModel> edukasiDummyClasses() {
     description:
         'Menguatkan mental investasi dengan nilai qanaah dan sabar.',
     outcomes: [
-      'Lebih tahan FOMO',
+      'Lebih tahan takut ketinggalan',
       'Paham makna qanaah dalam investasi',
       'Bisa menjaga emosi tetap stabil',
     ],
@@ -541,7 +541,7 @@ List<ClassModel> edukasiDummyClasses() {
             title: 'Kenapa kita mudah panik',
             type: LessonType.reading,
             durationMin: 8,
-            summary: 'Memahami pola emosi saat market turun.',
+            summary: 'Memahami pola emosi saat pasar turun.',
           ),
           LessonModel(
             id: 'lesson_qanaah_2',
@@ -584,7 +584,7 @@ List<ClassModel> edukasiDummyClasses() {
 
   return [
     dasarCrypto,
-    fiqhMuamalah,
+    fikihMuamalah,
     zakatAset,
     ghararMaisir,
     auditSmartContract,

@@ -90,7 +90,7 @@ class _AddEditHoldingViewState extends State<AddEditHoldingView> {
   void _save() {
     if (!_formKey.currentState!.validate()) return;
     if (_selectedCoinCode == null) {
-      Get.snackbar('Error', 'Silakan pilih koin dari daftar pencarian', 
+      Get.snackbar('Gagal', 'Silakan pilih koin dari daftar pencarian', 
         backgroundColor: Colors.red, colorText: Colors.white, snackPosition: SnackPosition.BOTTOM);
       return;
     }
@@ -99,7 +99,7 @@ class _AddEditHoldingViewState extends State<AddEditHoldingView> {
     final price = double.tryParse(_priceController.text.replaceAll(',', '.')) ?? 0;
     
     if (amount <= 0) {
-      Get.snackbar('Error', 'Jumlah aset harus lebih dari 0', backgroundColor: Colors.red, colorText: Colors.white);
+      Get.snackbar('Gagal', 'Jumlah aset harus lebih dari 0', backgroundColor: Colors.red, colorText: Colors.white);
       return;
     }
 
@@ -150,7 +150,7 @@ class _AddEditHoldingViewState extends State<AddEditHoldingView> {
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                children: [
                  Text(
-                   isEdit ? 'Update Aset' : 'Catat Aset Baru',
+                   isEdit ? 'Perbarui Aset' : 'Catat Aset Baru',
                    style: const TextStyle(
                      color: MuamalahColors.textPrimary,
                      fontSize: 20,
@@ -166,7 +166,7 @@ class _AddEditHoldingViewState extends State<AddEditHoldingView> {
              const SizedBox(height: 24),
              
              // Coin Search Field
-             _buildLabel('Nama Aset Crypto'),
+             _buildLabel('Nama Aset Kripto'),
              TextFormField(
                controller: _coinController,
                style: const TextStyle(color: MuamalahColors.textPrimary, fontWeight: FontWeight.bold),

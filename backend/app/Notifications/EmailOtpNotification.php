@@ -19,11 +19,11 @@ class EmailOtpNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Kode OTP Averroes')
+            ->subject('Kode Verifikasi Averroes')
             ->greeting('Assalamu\'alaikum,')
-            ->line('Berikut kode verifikasi untuk akun Averroes kamu:')
+            ->line('Kode verifikasi akun Averroes Anda adalah:')
             ->line("**{$this->otp}**")
-            ->line('Kode ini berlaku 10 menit. Jangan berikan kode ini ke siapa pun.')
-            ->line('Jika kamu tidak merasa mendaftar, abaikan email ini.');
+            ->line('Jangan bagikan kode ini kepada siapa pun.')
+            ->line('Jika Anda tidak merasa mendaftar, abaikan email ini.');
     }
 }

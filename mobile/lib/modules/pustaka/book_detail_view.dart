@@ -75,7 +75,7 @@ class BookDetailView extends StatelessWidget {
                               ),
                               SizedBox(width: 4),
                               Text(
-                                'PREMIUM',
+                                'ISTIMEWA',
                                 style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
@@ -469,13 +469,13 @@ class BookDetailView extends StatelessWidget {
                     child: Column(
                       children: [
                         _buildKeyPoint(
-                          'Pemahaman dasar tentang teknologi blockchain dan cryptocurrency dalam perspektif Islam',
+                          'Pemahaman dasar tentang teknologi rantai blok dan aset kripto dalam perspektif Islam',
                         ),
                         _buildKeyPoint(
                           'Kriteria penilaian halal-haram dalam transaksi aset digital berdasarkan dalil syari',
                         ),
                         _buildKeyPoint(
-                          'Panduan praktis menghitung dan menunaikan zakat dari aset cryptocurrency',
+                          'Panduan praktis menghitung dan menunaikan zakat dari aset kripto',
                         ),
                         _buildKeyPoint(
                           'Prinsip kehati-hatian dalam berinvestasi di pasar yang volatil',

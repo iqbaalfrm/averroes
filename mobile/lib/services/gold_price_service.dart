@@ -116,7 +116,7 @@ class GoldPriceService {
           
           return GoldPriceData(
             pricePerGramIdr: indonesiaPrice,
-            source: 'Exchange Rate + Premium',
+            source: 'Kurs + Istimewa',
             lastUpdated: DateTime.now(),
           );
         }

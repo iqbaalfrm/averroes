@@ -8,6 +8,7 @@ import 'edukasi_models.dart';
 import 'lesson_player_view.dart';
 import 'modul_view.dart';
 import '../pustaka/pustaka_view.dart';
+import 'exam_view.dart';
 
 class KelasDetailView extends StatelessWidget {
   final ClassModel classModel;
@@ -75,6 +76,12 @@ class KelasDetailView extends StatelessWidget {
                   _buildSectionTitle('Modul'),
                   const SizedBox(height: 8),
                   ...classModel.modules.map((module) => _buildModuleAccordion(context, module)),
+                  if (classModel.exam != null) ...[
+                    const SizedBox(height: 24),
+                    _buildSectionTitle('Ujian Akhir'),
+                    const SizedBox(height: 12),
+                    _buildExamCard(),
+                  ],
                 ],
               ),
             ),
@@ -179,7 +186,7 @@ class KelasDetailView extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         _MetaChip(
-          label: '${classModel.lessonsCount} lesson',
+          label: '${classModel.lessonsCount} materi',
           background: MuamalahColors.neutralBg,
           textColor: MuamalahColors.textMuted,
         ),
@@ -363,7 +370,7 @@ class KelasDetailView extends StatelessWidget {
             ),
           ),
           subtitle: Text(
-            '${module.lessons.length} lesson',
+            '${module.lessons.length} materi',
             style: const TextStyle(
               fontSize: 12,
               color: MuamalahColors.textMuted,
@@ -385,6 +392,61 @@ class KelasDetailView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildExamCard() {
+    final exam = classModel.exam!;
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: MuamalahColors.glassBorder),
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: MuamalahColors.halalBg,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Icon(Icons.school_rounded, color: MuamalahColors.halal),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  exam.title,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: MuamalahColors.textPrimary,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  exam.description.isNotEmpty ? exam.description : 'Uji pemahaman akhir kelas',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: MuamalahColors.textMuted,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: () => Get.to(() => ExamView(classModel: classModel)),
+            child: const Icon(Icons.chevron_right_rounded, color: MuamalahColors.textMuted),
+          ),
+        ],
       ),
     );
   }

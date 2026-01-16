@@ -58,6 +58,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('classes/{id}/progress', [EdukasiController::class, 'getProgress']);
     Route::post('classes/{id}/progress', [EdukasiController::class, 'saveProgress']);
+    Route::get('classes/{id}/exam', [EdukasiController::class, 'classExam']);
+    Route::post('classes/{id}/exam/submit', [EdukasiController::class, 'submitClassExam']);
+
+    Route::get('lessons/{id}/exercise', [EdukasiController::class, 'lessonExercise']);
+    Route::post('lessons/{id}/exercise/submit', [EdukasiController::class, 'submitLessonExercise']);
+
+    Route::get('certificates', [EdukasiController::class, 'certificates']);
 
     Route::get('portfolio/assets', [PortfolioController::class, 'index']);
     Route::post('portfolio/assets', [PortfolioController::class, 'store']);

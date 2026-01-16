@@ -233,7 +233,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               const SizedBox(height: 8),
               const Text(
-                'Masukkan username atau email Anda',
+                'Masukkan nama pengguna atau email Anda',
                 style: TextStyle(
                   fontSize: 14,
                   color: MuamalahColors.textSecondary,
@@ -265,15 +265,15 @@ class _LoginViewState extends State<LoginView> {
               // Password Field
               _buildTextField(
                 controller: _passwordController,
-                label: 'Password',
-                hint: 'Masukkan password Anda',
+                label: 'Kata Sandi',
+                hint: 'Masukkan kata sandi Anda',
                 icon: Icons.lock_outline_rounded,
                 isPassword: true,
                 isPasswordVisible: _isPasswordVisible,
                 onTogglePassword: _togglePasswordVisibility,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Password tidak boleh kosong';
+                    return 'Kata sandi tidak boleh kosong';
                   }
                   return null;
                 },
@@ -287,7 +287,7 @@ class _LoginViewState extends State<LoginView> {
                 child: GestureDetector(
                   onTap: () => Get.to(() => const ForgotPasswordView()),
                   child: const Text(
-                    'Lupa Password?',
+                    'Lupa Kata Sandi?',
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -373,7 +373,7 @@ class _LoginViewState extends State<LoginView> {
                     SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        'Silakan login menggunakan email yang terdaftar.',
+                        'Silakan masuk menggunakan email yang terdaftar.',
                         style: TextStyle(
                           fontSize: 12,
                           color: MuamalahColors.textSecondary,

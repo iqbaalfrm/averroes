@@ -93,7 +93,7 @@ class AuthChoiceView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: const Text(
-                    'Crypto Syariah • Edukasi • Zakat',
+                    'Kripto Syariah - Edukasi - Zakat',
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -149,7 +149,7 @@ class AuthChoiceView extends StatelessWidget {
                         Icon(Icons.login_rounded, size: 22),
                         SizedBox(width: 10),
                         Text(
-                          'Login / Daftar',
+                          'Masuk / Daftar',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,

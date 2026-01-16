@@ -78,7 +78,7 @@ class CurrencyService {
       }
     }
     
-    throw Exception('Failed to fetch rate');
+    throw Exception('Gagal mengambil kurs');
   }
 
   /// Convert USD to IDR

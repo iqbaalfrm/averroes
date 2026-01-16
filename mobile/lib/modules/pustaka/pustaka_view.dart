@@ -43,7 +43,7 @@ class PustakaView extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: const EdgeInsets.only(left: 20, bottom: 16),
                 title: const Text(
-                  'Pustaka Crypto',
+                  'Pustaka Kripto',
                   style: TextStyle(
                     color: MuamalahColors.textPrimary,
                     fontWeight: FontWeight.bold,
@@ -317,7 +317,7 @@ class PustakaView extends StatelessWidget {
                         ),
                         SizedBox(width: 4),
                         Text(
-                          'Premium',
+                          'Istimewa',
                           style: TextStyle(
                             fontSize: 11,
                             color: Color(0xFFD97706),

@@ -14,4 +14,9 @@ class ClassModule extends BaseModel
     {
         return $this->hasMany(ClassLesson::class, 'module_id');
     }
+
+    public function eduClass()
+    {
+        return $this->belongsTo(EdukasiClass::class, 'class_id');
+    }
 }

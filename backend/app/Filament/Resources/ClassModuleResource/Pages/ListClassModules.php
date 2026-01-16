@@ -3,21 +3,19 @@
 namespace App\Filament\Resources\ClassModuleResource\Pages;
 
 use App\Filament\Resources\ClassModuleResource;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Resources\Pages\CreateRecord;
-use Filament\Resources\Pages\EditRecord;
 
 class ListClassModules extends ListRecords
 {
     protected static string $resource = ClassModuleResource::class;
-}
+    protected static ?string $title = 'Modul Kelas';
+    protected static ?string $breadcrumb = 'Modul Kelas';
 
-class CreateClassModule extends CreateRecord
-{
-    protected static string $resource = ClassModuleResource::class;
-}
-
-class EditClassModule extends EditRecord
-{
-    protected static string $resource = ClassModuleResource::class;
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\CreateAction::make()->label('Tambah'),
+        ];
+    }
 }

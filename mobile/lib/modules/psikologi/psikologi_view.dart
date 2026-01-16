@@ -12,62 +12,62 @@ class PsikologiController extends GetxController {
   final RxInt currentMoodIndex = (-1).obs;
 
   final List<Map<String, dynamic>> moodOptions = [
-    {'emoji': '😰', 'label': 'Panik', 'color': MuamalahColors.haram},
-    {'emoji': '😟', 'label': 'Cemas', 'color': MuamalahColors.proses},
-    {'emoji': '😐', 'label': 'Netral', 'color': MuamalahColors.neutral},
-    {'emoji': '😊', 'label': 'Tenang', 'color': MuamalahColors.halal},
-    {'emoji': '🤩', 'label': 'Antusias', 'color': MuamalahColors.bitcoin},
+    {'emoji': ':(', 'label': 'Panik', 'color': MuamalahColors.haram},
+    {'emoji': ":'(", 'label': 'Cemas', 'color': MuamalahColors.proses},
+    {'emoji': ':|', 'label': 'Netral', 'color': MuamalahColors.neutral},
+    {'emoji': ':)', 'label': 'Tenang', 'color': MuamalahColors.halal},
+    {'emoji': ':D', 'label': 'Antusias', 'color': MuamalahColors.bitcoin},
   ];
 
   final List<Map<String, dynamic>> insightList = [
     {
-      'title': 'Mengatasi FOMO dalam Trading Crypto',
+      'title': 'Mengatasi Takut Ketinggalan dalam Perdagangan Kripto',
       'icon': Icons.trending_up_rounded,
       'color': MuamalahColors.haram,
-      'content': 'FOMO (Fear of Missing Out) adalah musuh utama trader. Ketika melihat coin naik drastis, godaan untuk ikut membeli sangat besar. Ingat, setiap keputusan investasi harus didasari riset, bukan emosi.',
+      'content': 'Takut ketinggalan adalah musuh utama pedagang. Ketika melihat koin naik drastis, godaan untuk ikut membeli sangat besar. Ingat, setiap keputusan investasi harus didasari riset, bukan emosi.',
       'tips': [
-        'Tetapkan rencana trading sebelum pasar buka',
-        'Jangan membeli hanya karena melihat orang lain profit',
+        'Tetapkan rencana perdagangan sebelum pasar buka',
+        'Jangan membeli hanya karena melihat orang lain untung',
         'Ingat bahwa volatilitas tinggi = risiko tinggi',
         'Berdoa dan istikharah sebelum keputusan besar',
       ],
       'islamicWisdom': '"Tidak ada kebaikan dalam banyak dari bisikan-bisikan mereka..." (QS. An-Nisa: 114)',
     },
     {
-      'title': 'Melawan Keserakahan (Greed)',
+      'title': 'Melawan Keserakahan',
       'icon': Icons.monetization_on_rounded,
       'color': MuamalahColors.proses,
-      'content': 'Keserakahan membuat kita mengabaikan risiko dan terus mengejar profit. Padahal dalam Islam, qana\'ah (menerima dengan cukup) adalah kunci keberkahan.',
+      'content': 'Keserakahan membuat kita mengabaikan risiko dan terus mengejar keuntungan. Padahal dalam Islam, qana'ah (menerima dengan cukup) adalah kunci keberkahan.',
       'tips': [
-        'Tetapkan target profit yang realistis',
-        'Ambil profit secara berkala, jangan serakah',
+        'Tetapkan target keuntungan yang realistis',
+        'Ambil keuntungan secara berkala, jangan serakah',
         'Ingat bahwa rezeki sudah ditentukan Allah',
-        'Hindari leverage berlebihan',
+        'Hindari penggunaan pinjaman berlebihan',
       ],
       'islamicWisdom': '"Bukanlah kekayaan itu dengan banyaknya harta, tetapi kekayaan yang sebenarnya adalah kekayaan jiwa." (HR. Bukhari)',
     },
     {
-      'title': 'Sabar dalam Volatilitas Market',
+      'title': 'Sabar dalam Fluktuasi Pasar',
       'icon': Icons.waves_rounded,
       'color': MuamalahColors.halal,
-      'content': 'Pasar crypto sangat volatile. Harga bisa turun 20% dalam sehari dan naik 30% keesokannya. Kesabaran adalah kunci untuk tidak panik selling.',
+      'content': 'Pasar kripto sangat fluktuatif. Harga bisa turun 20% dalam sehari dan naik 30% keesokannya. Kesabaran adalah kunci untuk tidak panik menjual.',
       'tips': [
         'Jangan cek harga terlalu sering',
         'Investasi hanya uang yang siap hilang',
-        'Fokus pada fundamental, bukan daily movement',
+        'Fokus pada fundamental, bukan pergerakan harian',
         'Ingat bahwa ujian adalah jalan menuju kesabaran',
       ],
       'islamicWisdom': '"Sungguh, Allah beserta orang-orang yang sabar." (QS. Al-Baqarah: 153)',
     },
     {
-      'title': 'Menghindari Panic Selling',
+      'title': 'Menghindari Panik Menjual',
       'icon': Icons.sentiment_very_dissatisfied_rounded,
       'color': MuamalahColors.risikoTinggi,
       'content': 'Ketika harga turun drastis, naluri pertama adalah menjual semua. Ini adalah respons emosional yang sering kali merugikan.',
       'tips': [
-        'Buat rencana exit strategy sebelumnya',
+        'Buat rencana strategi keluar sebelumnya',
         'Tanyakan: Apakah fundamentalnya berubah?',
-        'Jangan trading saat emosi tidak stabil',
+        'Jangan bertransaksi saat emosi tidak stabil',
         'Istirahat dari layar jika perlu',
       ],
       'islamicWisdom': '"Orang yang kuat bukanlah yang menang dalam perkelahian, tetapi orang yang dapat mengendalikan dirinya saat marah." (HR. Bukhari)',
@@ -76,12 +76,12 @@ class PsikologiController extends GetxController {
       'title': 'Menjaga Keseimbangan Hidup',
       'icon': Icons.balance_rounded,
       'color': MuamalahColors.primaryEmerald,
-      'content': 'Trading tidak boleh mengganggu ibadah dan kehidupan sosial. Jika kamu terobsesi dengan chart hingga lupa sholat, itu tanda bahaya.',
+      'content': 'Perdagangan tidak boleh mengganggu ibadah dan kehidupan sosial. Jika kamu terobsesi dengan grafik hingga lupa sholat, itu tanda bahaya.',
       'tips': [
-        'Tetapkan jam trading yang jelas',
+        'Tetapkan jam berdagang yang jelas',
         'Prioritaskan sholat 5 waktu',
         'Luangkan waktu untuk keluarga',
-        'Jangan bawa "chart" ke tempat tidur',
+        'Jangan bawa "grafik" ke tempat tidur',
       ],
       'islamicWisdom': '"Tidak bergeser kaki seorang hamba di hari kiamat sampai ditanya tentang umurnya untuk apa dihabiskan..." (HR. Tirmidzi)',
     },
@@ -161,7 +161,7 @@ class PsikologiView extends StatelessWidget {
                         const SizedBox(width: 16),
                         const Expanded(
                           child: Text(
-                            'Psikologi Trading',
+                            'Psikologi Islami',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -173,7 +173,7 @@ class PsikologiView extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     const Text(
-                      'Kelola emosi, trading dengan tenang',
+                      'Kelola emosi, berdagang dengan tenang',
                       style: TextStyle(
                         fontSize: 14,
                         color: MuamalahColors.textSecondary,
@@ -216,7 +216,7 @@ class PsikologiView extends StatelessWidget {
                         ),
                         const SizedBox(width: 12),
                         const Text(
-                          'Bagaimana mood tradingmu hari ini?',
+                          'Bagaimana mood berdagangmu hari ini?',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
@@ -242,11 +242,11 @@ class PsikologiView extends StatelessWidget {
                         final mood = controller.moodOptions[controller.currentMoodIndex.value];
                         String message;
                         if (controller.currentMoodIndex.value <= 1) {
-                          message = 'Mungkin sebaiknya tidak trading dulu. Istirahat sejenak, berdoa, dan tenangkan pikiranmu. 🤲';
+                          message = 'Mungkin sebaiknya tidak berdagang dulu. Istirahat sejenak, berdoa, dan tenangkan pikiranmu.';
                         } else if (controller.currentMoodIndex.value == 2) {
-                          message = 'Kondisi netral adalah kondisi ideal untuk trading. Tetap tenang dan ikuti rencana! ✨';
+                          message = 'Kondisi netral adalah kondisi ideal untuk berdagang. Tetap tenang dan ikuti rencana!';
                         } else {
-                          message = 'Mood baik! Tapi tetap waspada terhadap overconfidence. Tetap rendah hati. 🌙';
+                          message = 'Mood baik! Tapi tetap waspada terhadap percaya diri berlebihan. Tetap rendah hati.';
                         }
                         return Container(
                           margin: const EdgeInsets.only(top: 16),
@@ -338,7 +338,7 @@ class PsikologiView extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     const Text(
-                      '— Pengingat dari CryptoSyaria',
+                      '? Pengingat dari Averroes',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.white70,
@@ -354,7 +354,7 @@ class PsikologiView extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'Insight Psikologi Trading',
+                  'Wawasan Psikologi Islami',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,

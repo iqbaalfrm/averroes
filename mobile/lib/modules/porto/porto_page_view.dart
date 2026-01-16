@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../theme/app_theme.dart';
+import '../../routes/app_routes.dart';
 import 'portfolio_controller.dart';
 import 'add_edit_holding_view.dart';
 import 'models/portfolio_holding.dart';
@@ -390,7 +391,7 @@ class PortoPageView extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           const Text(
-            'Mulai catat investasi crypto kamu.',
+            'Mulai catat investasi kripto kamu.',
             style: TextStyle(color: MuamalahColors.textSecondary),
           ),
           const SizedBox(height: 32),
@@ -429,7 +430,7 @@ class PortoPageView extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             const Text(
-              'Login untuk mencatat portofolio dan memantau asetmu secara real-time.',
+              'Masuk untuk mencatat portofolio dan memantau asetmu secara real-time.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: MuamalahColors.textSecondary,
@@ -438,7 +439,7 @@ class PortoPageView extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             ElevatedButton(
-              onPressed: () => Get.toNamed('/login'),
+              onPressed: () => Get.toNamed(Routes.LOGIN),
               style: ElevatedButton.styleFrom(
                 backgroundColor: MuamalahColors.primaryEmerald,
                 foregroundColor: Colors.white,
@@ -447,7 +448,7 @@ class PortoPageView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              child: const Text('Login Sekarang', style: TextStyle(fontWeight: FontWeight.bold)),
+              child: const Text('Masuk Sekarang', style: TextStyle(fontWeight: FontWeight.bold)),
             ),
           ],
         ),

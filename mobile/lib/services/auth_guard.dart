@@ -19,7 +19,6 @@ class AuthGuard {
     'Tanya Ahli',
     'Chatbot',
     'Diskusi',
-    'Portfolio',
     'Portofolio',
     'Zakat',
     'Simpan progres',
@@ -196,7 +195,7 @@ class _LoginRequiredBottomSheet extends StatelessWidget {
                     Icon(Icons.login_rounded, size: 20),
                     SizedBox(width: 10),
                     Text(
-                      'Login',
+                      'Masuk',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

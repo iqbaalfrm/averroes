@@ -3,47 +3,56 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ArticleResource\Pages;
-use App\Filament\Support\RoleHelper;
+use App\Filament\Resources\ArticleResource\RelationManagers;
 use App\Models\Article;
+use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Resources\Resource;
+use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
-    protected static ?string $navigationGroup = 'Artikel';
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-
-    public static function canViewAny(): bool
-    {
-        return RoleHelper::hasRole(['admin', 'editor']);
-    }
+    protected static ?string $navigationGroup = 'Artikel';
+    protected static ?string $navigationLabel = 'Artikel';
+    protected static ?string $modelLabel = 'Artikel';
+    protected static ?string $pluralModelLabel = 'Artikel';
+    protected static ?string $slug = 'artikel';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title')->required(),
-                TextInput::make('slug'),
-                Textarea::make('excerpt')->rows(3),
-                Textarea::make('content')->rows(6),
-                TextInput::make('cover_image_url')->label('Cover Image URL'),
-                TextInput::make('source')->required(),
-                TextInput::make('url')->required(),
-                TextInput::make('image_url')->label('Image URL'),
-                Select::make('status')
+                Forms\Components\TextInput::make('title')
+                    ->label('Judul')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('source')
+                    ->label('Sumber')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('url')
+                    ->label('Tautan')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\FileUpload::make('image_url')
+                    ->label('Gambar')
+                    ->image(),
+                Forms\Components\Select::make('status')
+                    ->label('Status')
                     ->options([
-                        'draft' => 'Draft',
-                        'published' => 'Published',
+                        'draf' => 'Draf',
+                        'terbit' => 'Terbit',
                     ])
-                    ->default('published'),
-                DateTimePicker::make('published_at')->required(),
+                    ->default('terbit')
+                    ->required(),
+                Forms\Components\DateTimePicker::make('published_at')
+                    ->label('Waktu Terbit')
+                    ->required(),
             ]);
     }
 
@@ -51,12 +60,52 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')->searchable()->limit(40),
-                TextColumn::make('source')->sortable(),
-                TextColumn::make('status')->sortable(),
-                TextColumn::make('published_at')->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('source')
+                    ->label('Sumber')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
+                    ->sortable(),
+                Tables\Columns\ImageColumn::make('image_url')
+                    ->label('Gambar'),
+                Tables\Columns\TextColumn::make('published_at')
+                    ->label('Terbit')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('published_at', 'desc');
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
     }
 
     public static function getPages(): array
@@ -64,6 +113,7 @@ class ArticleResource extends Resource
         return [
             'index' => Pages\ListArticles::route('/'),
             'create' => Pages\CreateArticle::route('/create'),
+            'view' => Pages\ViewArticle::route('/{record}'),
             'edit' => Pages\EditArticle::route('/{record}/edit'),
         ];
     }

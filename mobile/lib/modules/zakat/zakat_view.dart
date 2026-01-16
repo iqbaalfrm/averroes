@@ -82,7 +82,7 @@ class ZakatController extends GetxController {
       final prices = portfolioController.prices;
 
       if (holdings.isEmpty) {
-        errorMessage.value = 'Portfolio kosong';
+        errorMessage.value = 'Portofolio kosong';
         calculation.value = null;
         return;
       }
@@ -277,7 +277,7 @@ class ZakatView extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               const Text(
-                'Login Diperlukan',
+                'Masuk Diperlukan',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -286,7 +286,7 @@ class ZakatView extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               const Text(
-                'Silakan login untuk menghitung estimasi zakat aset kripto Anda.',
+                'Silakan masuk untuk menghitung estimasi zakat aset kripto Anda.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
@@ -366,7 +366,7 @@ class ZakatView extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             const Text(
-              'Portfolio Kosong',
+              'Portofolio Kosong',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -375,7 +375,7 @@ class ZakatView extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             const Text(
-              'Tambahkan aset kripto ke portfolio Anda terlebih dahulu untuk menghitung estimasi zakat.',
+              'Tambahkan aset kripto ke portofolio Anda terlebih dahulu untuk menghitung estimasi zakat.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 14,
@@ -395,7 +395,7 @@ class ZakatView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: const Text(
-                  'Ke Portfolio',
+                  'Ke Portofolio',
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -943,7 +943,7 @@ class ZakatView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Text(
-                'Formula: Zakat = Total Aset ? 2.5%\n(jika Total Aset >= Nishab)',
+                'Formula: Zakat = Total Aset x 2,5%\n(jika Total Aset >= Nishab)',
                 style: TextStyle(
                   fontSize: 11,
                   color: MuamalahColors.textMuted,

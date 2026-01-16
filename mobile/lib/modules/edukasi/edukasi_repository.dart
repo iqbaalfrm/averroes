@@ -11,6 +11,7 @@ class EdukasiRepository {
 
       return rows.map((row) {
         final modules = _mapModules(row['modules'], row['lessons']);
+        final exam = _mapExam(row['exam']);
         return ClassModel(
           id: row['id'] as String,
           title: row['title'] as String? ?? '',
@@ -27,6 +28,7 @@ class EdukasiRepository {
           description: row['description'] as String? ?? '',
           outcomes: _parseOutcomes(row['outcomes']),
           modules: modules,
+          exam: exam,
           isLocal: false,
         );
       }).toList();
@@ -81,6 +83,75 @@ class EdukasiRepository {
     });
   }
 
+  Future<ExerciseModel?> fetchLessonExercise(String lessonId) async {
+    try {
+      final response = await ApiClient.get('/lessons/$lessonId/exercise');
+      final data = response.data as Map<String, dynamic>;
+      final payload = data['data'] as Map<String, dynamic>?;
+      if (payload == null) return null;
+      return _mapExercise(payload);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<Map<String, dynamic>?> submitLessonExercise(
+    String lessonId,
+    List<Map<String, String?>> answers,
+  ) async {
+    try {
+      final response = await ApiClient.post(
+        '/lessons/$lessonId/exercise/submit',
+        data: {
+          'answers': answers,
+        },
+      );
+      return response.data as Map<String, dynamic>?;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<ExamModel?> fetchClassExam(String classId) async {
+    try {
+      final response = await ApiClient.get('/classes/$classId/exam');
+      final data = response.data as Map<String, dynamic>;
+      final payload = data['data'] as Map<String, dynamic>?;
+      if (payload == null) return null;
+      return _mapExam(payload);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<Map<String, dynamic>?> submitClassExam(
+    String classId,
+    List<Map<String, String?>> answers,
+  ) async {
+    try {
+      final response = await ApiClient.post(
+        '/classes/$classId/exam/submit',
+        data: {
+          'answers': answers,
+        },
+      );
+      return response.data as Map<String, dynamic>?;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<List<CertificateModel>> fetchCertificates() async {
+    try {
+      final response = await ApiClient.get('/certificates');
+      final data = response.data as Map<String, dynamic>;
+      final rows = List<Map<String, dynamic>>.from(data['data'] ?? []);
+      return rows.map(_mapCertificate).toList();
+    } catch (_) {
+      return [];
+    }
+  }
+
   List<ModuleModel> _mapModules(dynamic modules, dynamic lessons) {
     if (modules is List && modules.isNotEmpty) {
       return modules.map((module) {
@@ -106,14 +177,91 @@ class EdukasiRepository {
   List<LessonModel> _mapLessons(dynamic lessons) {
     if (lessons is! List) return [];
     return lessons.map((row) {
+      final content = row['content'] as String? ?? '';
+      final ayatRef = row['ayat_reference'] as String? ?? '';
+      final ayatArabic = row['ayat_arabic'] as String? ?? '';
+      final ayatTranslation = row['ayat_translation'] as String? ?? '';
+      final videoUrl = row['video_url'] as String? ?? row['media_url'] as String? ?? '';
+      final exercise = row['exercise'] as Map<String, dynamic>?;
       return LessonModel(
         id: row['id'] as String,
         title: row['title'] as String? ?? '',
         type: _parseLessonType(row['type'] as String?),
         durationMin: row['duration_min'] as int? ?? 0,
-        summary: row['content'] as String? ?? '',
+        summary: content,
+        content: content,
+        videoUrl: videoUrl,
+        ayatReference: ayatRef,
+        ayatArabic: ayatArabic,
+        ayatTranslation: ayatTranslation,
+        exerciseId: exercise?['id'] as String?,
       );
     }).toList();
+  }
+
+  ExerciseModel _mapExercise(Map<String, dynamic> payload) {
+    final questions = _mapQuestions(payload['questions']);
+    return ExerciseModel(
+      id: payload['id'] as String,
+      lessonId: payload['lesson_id'] as String,
+      title: payload['title'] as String? ?? '',
+      instructions: payload['instructions'] as String? ?? '',
+      passingScore: payload['passing_score'] as int? ?? 70,
+      maxAttempts: payload['max_attempts'] as int?,
+      questions: questions,
+    );
+  }
+
+  ExamModel? _mapExam(dynamic payload) {
+    if (payload is! Map<String, dynamic>) return null;
+    final questions = _mapQuestions(payload['questions']);
+    return ExamModel(
+      id: payload['id'] as String? ?? '',
+      classId: payload['class_id'] as String? ?? '',
+      title: payload['title'] as String? ?? '',
+      description: payload['description'] as String? ?? '',
+      passingScore: payload['passing_score'] as int? ?? 70,
+      durationMin: payload['duration_min'] as int?,
+      maxAttempts: payload['max_attempts'] as int?,
+      questions: questions,
+    );
+  }
+
+  List<QuestionModel> _mapQuestions(dynamic rows) {
+    if (rows is! List) return [];
+    return rows.map((row) {
+      return QuestionModel(
+        id: row['id'] as String,
+        text: row['question_text'] as String? ?? '',
+        order: row['order'] as int? ?? 0,
+        points: row['points'] as int? ?? 1,
+        options: _mapOptions(row['options']),
+      );
+    }).toList();
+  }
+
+  List<OptionModel> _mapOptions(dynamic rows) {
+    if (rows is! List) return [];
+    return rows.map((row) {
+      return OptionModel(
+        id: row['id'] as String,
+        text: row['option_text'] as String? ?? '',
+        order: row['order'] as int? ?? 0,
+      );
+    }).toList();
+  }
+
+  CertificateModel _mapCertificate(Map<String, dynamic> row) {
+    final issuedAt = row['issued_at'] as String?;
+    return CertificateModel(
+      id: row['id'] as String? ?? '',
+      classId: row['class_id'] as String? ?? '',
+      classTitle: row['class_title'] as String? ?? '',
+      certificateNumber: row['certificate_number'] as String? ?? '',
+      finalScore: row['final_score'] as int? ?? 0,
+      issuedAt: issuedAt != null ? DateTime.tryParse(issuedAt) : null,
+      qrPayload: row['qr_payload'] as String? ?? '',
+    );
   }
 
   CoverTheme _parseCoverTheme(String? theme) {

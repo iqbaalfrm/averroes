@@ -80,7 +80,7 @@ class PrayerTimesService {
     final response = await _client.get(uri).timeout(
       const Duration(seconds: 15),
       onTimeout: () {
-        throw TimeoutException('Request timeout');
+        throw TimeoutException('Batas waktu koneksi habis');
       },
     );
 

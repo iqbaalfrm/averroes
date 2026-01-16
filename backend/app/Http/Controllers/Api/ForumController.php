@@ -17,7 +17,7 @@ class ForumController extends Controller
     {
         $query = ForumThread::query()
             ->where('is_hidden', false)
-            ->where('status', 'open');
+            ->where('status', 'terbuka');
 
         if ($category = $request->query('category')) {
             $query->where('category', $category);
@@ -61,7 +61,7 @@ class ForumController extends Controller
             'category' => $data['category'],
             'is_anonymous' => $data['is_anonymous'] ?? false,
             'tags' => $data['tags'] ?? [],
-            'status' => 'open',
+            'status' => 'terbuka',
         ]);
 
         return response()->json(['data' => new ForumThreadResource($thread)], 201);

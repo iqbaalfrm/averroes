@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+class LessonExerciseOption extends BaseModel
+{
+    protected $fillable = [
+        'question_id',
+        'option_text',
+        'is_correct',
+        'sort_order',
+    ];
+
+    protected $casts = [
+        'is_correct' => 'boolean',
+    ];
+
+    public function question()
+    {
+        return $this->belongsTo(LessonExerciseQuestion::class, 'question_id');
+    }
+}

@@ -99,7 +99,7 @@ class ArticleCard extends StatelessWidget {
                       const SizedBox(width: 6),
                       Expanded(
                         child: Text(
-                          article.source,
+                          _displaySource(article.source),
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -177,7 +177,7 @@ class ArticleCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        article.queryTag,
+        _displayTag(article.queryTag),
         style: TextStyle(
           fontSize: 11,
           fontWeight: FontWeight.bold,
@@ -192,10 +192,12 @@ class ArticleCard extends StatelessWidget {
       case 'coinvestasi':
         return [const Color(0xFF6366F1), const Color(0xFF8B5CF6)];
       case 'cryptowave':
+      case 'kriptowave':
         return [const Color(0xFFEC4899), const Color(0xFFF472B6)];
       case 'syariah':
         return [MuamalahColors.primaryEmerald, MuamalahColors.emeraldLight];
       case 'market':
+      case 'pasar':
         return [const Color(0xFFF59E0B), const Color(0xFFFBBF24)];
       default:
         return [MuamalahColors.textMuted, MuamalahColors.textSecondary];
@@ -207,14 +209,30 @@ class ArticleCard extends StatelessWidget {
       case 'coinvestasi':
         return const Color(0xFF6366F1);
       case 'cryptowave':
+      case 'kriptowave':
         return const Color(0xFFEC4899);
       case 'syariah':
         return MuamalahColors.primaryEmerald;
       case 'market':
+      case 'pasar':
         return const Color(0xFFF59E0B);
       default:
         return MuamalahColors.textMuted;
     }
+  }
+
+  String _displaySource(String source) {
+    final lower = source.toLowerCase();
+    if (lower.contains('cryptowave')) return 'Kriptowave';
+    return source;
+  }
+
+  String _displayTag(String tag) {
+    final lower = tag.toLowerCase();
+    if (lower == 'market') return 'Pasar';
+    if (lower == 'screener') return 'Penyaring';
+    if (lower == 'cryptowave') return 'Kriptowave';
+    return tag;
   }
 
   Future<void> _openArticle() async {
@@ -262,13 +280,13 @@ class ArticleCard extends StatelessWidget {
               // Copy Link
               ListTile(
                 leading: const Icon(Icons.copy_rounded, color: MuamalahColors.primaryEmerald),
-                title: const Text('Salin Link'),
+                title: const Text('Salin Tautan'),
                 onTap: () {
                   Clipboard.setData(ClipboardData(text: article.link));
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Link tersalin'),
+                      content: Text('Tautan tersalin'),
                       duration: Duration(seconds: 1),
                     ),
                   );
@@ -291,7 +309,7 @@ class ArticleCard extends StatelessWidget {
               // Open in Browser
               ListTile(
                 leading: const Icon(Icons.open_in_browser_rounded, color: Color(0xFFF59E0B)),
-                title: const Text('Buka di Browser'),
+                title: const Text('Buka di Peramban'),
                 onTap: () {
                   Navigator.pop(context);
                   _openInExternalBrowser();

@@ -20,7 +20,7 @@ class BookResource extends JsonResource
             'description' => $this->description,
             'pdf_url' => $this->pdf_url,
             'cover_image_url' => $this->cover_image_url ?: $this->cover_url,
-            'status' => $this->status ?? 'published',
+            'status' => $this->status ?? 'terbit',
         ];
     }
 }

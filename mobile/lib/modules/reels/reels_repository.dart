@@ -12,8 +12,8 @@ class ReelsRepository {
 
     try {
       String? pickerTheme;
-      if (['Sabar', 'Muamalah', 'Takdir', 'Fiqh Muamalah'].contains(category)) {
-        if (category == 'Fiqh Muamalah') pickerTheme = 'muamalah';
+      if (['Sabar', 'Muamalah', 'Takdir', 'Fikih Muamalah'].contains(category)) {
+        if (category == 'Fikih Muamalah') pickerTheme = 'muamalah';
         else pickerTheme = category.toLowerCase();
       } else if (category == 'Acak') {
         pickerTheme = 'acak';
@@ -82,10 +82,10 @@ class ReelsRepository {
       ),
       ReelItem(
         id: 'fb_3',
-        category: 'Fiqh Muamalah',
+        category: 'Fikih Muamalah',
         type: 'quote',
         indonesia: 'Jual beli itu dihalalkan, sedangkan riba itu diharamkan. Setiap transaksi harus didasari keridhaan kedua belah pihak.',
-        source: 'Kaidah Fiqh',
+        source: 'Kaidah Fikih',
       ),
       ReelItem(
         id: 'fb_4',
@@ -98,7 +98,7 @@ class ReelsRepository {
       ),
       ReelItem(
         id: 'fb_5',
-        category: 'Fiqh Muamalah',
+        category: 'Fikih Muamalah',
         type: 'hadith',
         indonesia: 'Pedagang yang jujur dan terpercaya akan dikumpulkan bersama para nabi, orang-orang shiddiq, dan orang-orang yang mati syahid.',
         source: 'H.R. Tirmidzi',
@@ -121,7 +121,7 @@ class ReelsRepository {
       ),
       ReelItem(
         id: 'fb_8',
-        category: 'Fiqh Muamalah',
+        category: 'Fikih Muamalah',
         type: 'ayat',
         arabic: '??? ???????? ????????? ??????? ??? ?????????? ???????????? ????????? ????????????',
         indonesia: 'Wahai orang-orang yang beriman! Janganlah kamu saling memakan harta sesamamu dengan jalan yang batil.',
@@ -149,8 +149,8 @@ class ReelsRepository {
   }
 
   bool _categoryMatch(String itemCat, String filterCat) {
-    if (filterCat == 'Fiqh Muamalah' && itemCat == 'Muamalah') return true;
-    if (filterCat == 'Muamalah' && itemCat == 'Fiqh Muamalah') return true;
+    if (filterCat == 'Fikih Muamalah' && itemCat == 'Muamalah') return true;
+    if (filterCat == 'Muamalah' && itemCat == 'Fikih Muamalah') return true;
     return false;
   }
 }

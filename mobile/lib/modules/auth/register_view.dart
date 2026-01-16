@@ -236,7 +236,7 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               const SizedBox(height: 8),
               const Text(
-                'Mulai perjalanan crypto syariahmu 🌙',
+                'Mulai perjalanan kripto syariahmu',
                 style: TextStyle(
                   fontSize: 15,
                   color: MuamalahColors.textSecondary,
@@ -248,18 +248,18 @@ class _RegisterViewState extends State<RegisterView> {
               // Username field
               _buildTextField(
                 controller: _usernameController,
-                label: 'Username',
+                label: 'Nama Pengguna',
                 hint: 'contoh: ahmad123',
                 icon: Icons.alternate_email_rounded,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Username tidak boleh kosong';
+                    return 'Nama pengguna tidak boleh kosong';
                   }
                   if (value.length < 3) {
-                    return 'Username minimal 3 karakter';
+                    return 'Nama pengguna minimal 3 karakter';
                   }
                   if (!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(value)) {
-                    return 'Username hanya boleh huruf, angka, dan underscore';
+                    return 'Nama pengguna hanya boleh huruf, angka, dan underscore';
                   }
                   return null;
                 },
@@ -300,7 +300,7 @@ class _RegisterViewState extends State<RegisterView> {
               // Password field
               _buildTextField(
                 controller: _passwordController,
-                label: 'Password',
+                label: 'Kata Sandi',
                 hint: 'Minimal 6 karakter',
                 icon: Icons.lock_outline_rounded,
                 isPassword: true,
@@ -308,10 +308,10 @@ class _RegisterViewState extends State<RegisterView> {
                 onTogglePassword: _togglePasswordVisibility,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Password tidak boleh kosong';
+                    return 'Kata sandi tidak boleh kosong';
                   }
                   if (value.length < 6) {
-                    return 'Password minimal 6 karakter';
+                    return 'Kata sandi minimal 6 karakter';
                   }
                   return null;
                 },
@@ -322,18 +322,18 @@ class _RegisterViewState extends State<RegisterView> {
               // Confirm Password field
               _buildTextField(
                 controller: _confirmPasswordController,
-                label: 'Konfirmasi Password',
-                hint: 'Ulangi password',
+                label: 'Konfirmasi Kata Sandi',
+                hint: 'Ulangi kata sandi',
                 icon: Icons.lock_outline_rounded,
                 isPassword: true,
                 isPasswordVisible: _isConfirmPasswordVisible,
                 onTogglePassword: _toggleConfirmPasswordVisibility,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Konfirmasi password tidak boleh kosong';
+                    return 'Konfirmasi kata sandi tidak boleh kosong';
                   }
                   if (value != _passwordController.text) {
-                    return 'Password tidak sama';
+                    return 'Kata sandi tidak sama';
                   }
                   return null;
                 },

@@ -15,7 +15,7 @@ class ForumThreadResource extends JsonResource
             'title' => $this->title,
             'body' => $this->body,
             'tags' => $this->tags ?? [],
-            'status' => $this->status ?? 'open',
+            'status' => $this->status ?? 'terbuka',
             'category' => $this->category,
             'reply_count' => $this->reply_count,
             'like_count' => $this->like_count,

@@ -20,7 +20,7 @@ class RecentUsers extends BaseWidget
     {
         return [
             TextColumn::make('email')->label('Email')->searchable(),
-            TextColumn::make('created_at')->label('Created')->dateTime(),
+            TextColumn::make('created_at')->label('Dibuat')->dateTime(),
         ];
     }
 }

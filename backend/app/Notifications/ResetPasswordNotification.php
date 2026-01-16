@@ -21,10 +21,10 @@ class ResetPasswordNotification extends ResetPassword
         }
 
         return (new MailMessage)
-            ->subject('Reset Password - Averroes')
+            ->subject('Atur Ulang Kata Sandi - Averroes')
             ->greeting('Assalamu\'alaikum,')
-            ->line('Kami menerima permintaan reset password untuk akunmu.')
-            ->action('Atur Ulang Password', $resetUrl)
-            ->line('Jika kamu tidak meminta reset password, abaikan email ini.');
+            ->line('Kami menerima permintaan pengaturan ulang kata sandi untuk akun Anda.')
+            ->action('Atur Ulang Kata Sandi', $resetUrl)
+            ->line('Jika Anda tidak meminta pengaturan ulang kata sandi, abaikan email ini.');
     }
 }

@@ -6,6 +6,7 @@ import '../../theme/app_theme.dart';
 import '../../services/auth_guard.dart';
 import 'edukasi_controller.dart';
 import 'edukasi_models.dart';
+import 'exercise_view.dart';
 
 class LessonPlayerController extends GetxController {
   final RxBool isCompleted = false.obs;
@@ -64,6 +65,27 @@ class LessonPlayerView extends StatelessWidget {
             Expanded(
               child: _buildLessonBody(),
             ),
+            if (lessonModel.exerciseId != null && lessonModel.exerciseId!.isNotEmpty) ...[
+              const SizedBox(height: 12),
+              _PrimaryAction(
+                label: 'Mulai Latihan',
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  AuthGuard.requireAuth(
+                    featureName: 'Simpan progres',
+                    onAllowed: () {
+                      Get.to(
+                        () => ExerciseView(
+                          classModel: classModel,
+                          lessonModel: lessonModel,
+                        ),
+                        transition: Transition.rightToLeftWithFade,
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
             const SizedBox(height: 12),
             Obx(() {
               return Row(
@@ -93,7 +115,7 @@ class LessonPlayerView extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: _PrimaryAction(
-                      label: 'Lanjut lesson berikutnya',
+                      label: 'Lanjut materi berikutnya',
                       onTap: () {
                         HapticFeedback.lightImpact();
                         if (AuthGuard.canAccess('Simpan progres')) {
@@ -105,7 +127,7 @@ class LessonPlayerView extends StatelessWidget {
                         } else {
                           Get.snackbar(
                             'Tersimpan lokal',
-                            'Login dulu biar progresmu nggak hilang.',
+                            'Masuk dulu biar progresmu nggak hilang.',
                             snackPosition: SnackPosition.BOTTOM,
                             backgroundColor: Colors.white,
                             colorText: MuamalahColors.textPrimary,
@@ -198,11 +220,11 @@ class LessonPlayerView extends StatelessWidget {
   Widget _buildLessonBody() {
     switch (lessonModel.type) {
       case LessonType.reading:
-        return _ReadingBody(summary: lessonModel.summary);
+        return _ReadingBody(lesson: lessonModel);
       case LessonType.video:
-        return _VideoBody(summary: lessonModel.summary);
+        return _VideoBody(lesson: lessonModel);
       case LessonType.audio:
-        return _AudioBody(summary: lessonModel.summary);
+        return _AudioBody(lesson: lessonModel);
     }
   }
 
@@ -243,9 +265,9 @@ class LessonPlayerView extends StatelessWidget {
 }
 
 class _ReadingBody extends StatelessWidget {
-  final String summary;
+  final LessonModel lesson;
 
-  const _ReadingBody({required this.summary});
+  const _ReadingBody({required this.lesson});
 
   @override
   Widget build(BuildContext context) {
@@ -264,52 +286,71 @@ class _ReadingBody extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            summary,
+            lesson.content.isNotEmpty ? lesson.content : lesson.summary,
             style: const TextStyle(
               fontSize: 13,
               color: MuamalahColors.textSecondary,
               height: 1.6,
             ),
           ),
-          const SizedBox(height: 20),
-          const Text(
-            'Poin utama',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: MuamalahColors.textPrimary,
-            ),
-          ),
-          const SizedBox(height: 10),
-          _Bullet(text: 'Pelan-pelan aja, yang penting paham.'),
-          _Bullet(text: 'Catat istilah baru yang bikin penasaran.'),
-          _Bullet(text: 'Cek lagi prosesnya sebelum ambil keputusan.'),
-          const SizedBox(height: 16),
-          const Text(
-            'Catatan kecil',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: MuamalahColors.textPrimary,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: MuamalahColors.neutralBg,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: const Text(
-              '?Pelan-pelan aja, yang penting paham dan tenang.?',
+          if (lesson.ayatReference.isNotEmpty ||
+              lesson.ayatArabic.isNotEmpty ||
+              lesson.ayatTranslation.isNotEmpty) ...[
+            const SizedBox(height: 20),
+            const Text(
+              'Rujukan Ayat',
               style: TextStyle(
-                fontSize: 13,
-                color: MuamalahColors.textSecondary,
-                height: 1.6,
-                fontStyle: FontStyle.italic,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: MuamalahColors.textPrimary,
               ),
             ),
-          ),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: MuamalahColors.neutralBg,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (lesson.ayatArabic.isNotEmpty)
+                    Text(
+                      lesson.ayatArabic,
+                      textDirection: TextDirection.rtl,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        height: 1.6,
+                        fontFamily: 'Amiri',
+                        color: MuamalahColors.textPrimary,
+                      ),
+                    ),
+                  if (lesson.ayatTranslation.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      lesson.ayatTranslation,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: MuamalahColors.textSecondary,
+                        height: 1.6,
+                      ),
+                    ),
+                  ],
+                  if (lesson.ayatReference.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      lesson.ayatReference,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: MuamalahColors.textMuted,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ],
         ],
       ),
     );
@@ -317,9 +358,9 @@ class _ReadingBody extends StatelessWidget {
 }
 
 class _VideoBody extends StatelessWidget {
-  final String summary;
+  final LessonModel lesson;
 
-  const _VideoBody({required this.summary});
+  const _VideoBody({required this.lesson});
 
   @override
   Widget build(BuildContext context) {
@@ -340,31 +381,19 @@ class _VideoBody extends StatelessWidget {
               children: const [
                 Icon(Icons.play_circle_fill_rounded, size: 56, color: MuamalahColors.textMuted),
                 SizedBox(height: 8),
-                Text('Video demo', style: TextStyle(color: MuamalahColors.textMuted)),
+                Text('Video materi', style: TextStyle(color: MuamalahColors.textMuted)),
               ],
             ),
           ),
           const SizedBox(height: 16),
           Text(
-            summary,
+            lesson.content.isNotEmpty ? lesson.content : lesson.summary,
             style: const TextStyle(
               fontSize: 13,
               color: MuamalahColors.textSecondary,
               height: 1.6,
             ),
           ),
-          const SizedBox(height: 18),
-          const Text(
-            'Catatan ringan',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: MuamalahColors.textPrimary,
-            ),
-          ),
-          const SizedBox(height: 8),
-          _Bullet(text: 'Pause sebentar kalau butuh ngulik istilah.'),
-          _Bullet(text: 'Ambil poin yang paling relevan buatmu.'),
         ],
       ),
     );
@@ -372,9 +401,9 @@ class _VideoBody extends StatelessWidget {
 }
 
 class _AudioBody extends StatelessWidget {
-  final String summary;
+  final LessonModel lesson;
 
-  const _AudioBody({required this.summary});
+  const _AudioBody({required this.lesson});
 
   @override
   Widget build(BuildContext context) {
@@ -395,7 +424,7 @@ class _AudioBody extends StatelessWidget {
                   children: const [
                     Icon(Icons.graphic_eq_rounded, color: MuamalahColors.textMuted),
                     SizedBox(width: 8),
-                    Text('Audio demo', style: TextStyle(color: MuamalahColors.textMuted)),
+                    Text('Audio materi', style: TextStyle(color: MuamalahColors.textMuted)),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -419,24 +448,13 @@ class _AudioBody extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            summary,
+            lesson.content.isNotEmpty ? lesson.content : lesson.summary,
             style: const TextStyle(
               fontSize: 13,
               color: MuamalahColors.textSecondary,
               height: 1.6,
             ),
           ),
-          const SizedBox(height: 16),
-          const Text(
-            'Highlight',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: MuamalahColors.textPrimary,
-            ),
-          ),
-          const SizedBox(height: 8),
-          _Bullet(text: 'Dengarkan sambil catat satu insight kecil.'),
         ],
       ),
     );

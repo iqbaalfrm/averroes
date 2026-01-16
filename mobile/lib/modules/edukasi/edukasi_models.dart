@@ -29,6 +29,12 @@ class LessonModel {
   final LessonType type;
   final int durationMin;
   final String summary;
+  final String content;
+  final String videoUrl;
+  final String ayatReference;
+  final String ayatArabic;
+  final String ayatTranslation;
+  final String? exerciseId;
   bool isCompleted;
 
   LessonModel({
@@ -37,6 +43,12 @@ class LessonModel {
     required this.type,
     required this.durationMin,
     required this.summary,
+    this.content = '',
+    this.videoUrl = '',
+    this.ayatReference = '',
+    this.ayatArabic = '',
+    this.ayatTranslation = '',
+    this.exerciseId,
     this.isCompleted = false,
   });
 }
@@ -66,6 +78,7 @@ class ClassModel {
   final String description;
   final List<String> outcomes;
   final List<ModuleModel> modules;
+  final ExamModel? exam;
   final bool isLocal;
 
   ClassModel({
@@ -81,7 +94,98 @@ class ClassModel {
     required this.description,
     required this.outcomes,
     required this.modules,
+    this.exam,
     this.isLocal = false,
+  });
+}
+
+class ExerciseModel {
+  final String id;
+  final String lessonId;
+  final String title;
+  final String instructions;
+  final int passingScore;
+  final int? maxAttempts;
+  final List<QuestionModel> questions;
+
+  ExerciseModel({
+    required this.id,
+    required this.lessonId,
+    required this.title,
+    required this.instructions,
+    required this.passingScore,
+    required this.maxAttempts,
+    required this.questions,
+  });
+}
+
+class ExamModel {
+  final String id;
+  final String classId;
+  final String title;
+  final String description;
+  final int passingScore;
+  final int? durationMin;
+  final int? maxAttempts;
+  final List<QuestionModel> questions;
+
+  ExamModel({
+    required this.id,
+    required this.classId,
+    required this.title,
+    required this.description,
+    required this.passingScore,
+    required this.durationMin,
+    required this.maxAttempts,
+    required this.questions,
+  });
+}
+
+class QuestionModel {
+  final String id;
+  final String text;
+  final int order;
+  final int points;
+  final List<OptionModel> options;
+
+  QuestionModel({
+    required this.id,
+    required this.text,
+    required this.order,
+    required this.points,
+    required this.options,
+  });
+}
+
+class OptionModel {
+  final String id;
+  final String text;
+  final int order;
+
+  OptionModel({
+    required this.id,
+    required this.text,
+    required this.order,
+  });
+}
+
+class CertificateModel {
+  final String id;
+  final String classId;
+  final String classTitle;
+  final String certificateNumber;
+  final int finalScore;
+  final DateTime? issuedAt;
+  final String qrPayload;
+
+  CertificateModel({
+    required this.id,
+    required this.classId,
+    required this.classTitle,
+    required this.certificateNumber,
+    required this.finalScore,
+    required this.issuedAt,
+    required this.qrPayload,
   });
 }
 

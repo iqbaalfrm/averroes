@@ -22,9 +22,10 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->id('admin')
             ->path('admin')
+            ->loginRouteSlug('masuk')
             ->login()
             ->authGuard('web')
-            ->brandName('Averroes Admin')
+            ->brandName('Admin Averroes')
             ->brandLogo(asset('assets/branding/logoutama.png'))
             ->brandLogoHeight('2.5rem')
             ->colors([

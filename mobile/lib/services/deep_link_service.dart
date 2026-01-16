@@ -54,7 +54,7 @@ class DeepLinkService extends GetxService {
     if (token == null || token.isEmpty) {
       Get.snackbar(
         'Verifikasi Gagal',
-        'Token tidak ditemukan. Silakan login kembali.',
+        'Token tidak ditemukan. Silakan masuk kembali.',
         backgroundColor: MuamalahColors.haramBg,
         colorText: MuamalahColors.haram,
       );

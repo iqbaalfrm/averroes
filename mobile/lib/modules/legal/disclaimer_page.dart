@@ -22,7 +22,7 @@ class DisclaimerPage extends StatelessWidget {
           onPressed: () => Get.back(),
         ),
         title: const Text(
-          'Disclaimer',
+          'Pernyataan Penyangkalan',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -87,12 +87,12 @@ class DisclaimerPage extends StatelessWidget {
             _buildDisclaimerCard(
               icon: Icons.account_balance_wallet_rounded,
               iconColor: MuamalahColors.bitcoin,
-              title: 'Disclaimer Keuangan',
+              title: 'Pernyataan Keuangan',
               points: [
                 'Informasi dalam aplikasi ini BUKAN merupakan nasihat keuangan atau investasi.',
-                'Cryptocurrency adalah aset yang sangat volatile dan berisiko tinggi.',
+                'Aset kripto adalah aset yang sangat fluktuatif dan berisiko tinggi.',
                 'Anda dapat kehilangan sebagian atau seluruh investasi Anda.',
-                'Selalu lakukan riset independen (DYOR) sebelum berinvestasi.',
+                'Selalu lakukan riset mandiri sebelum berinvestasi.',
                 'Kami tidak bertanggung jawab atas kerugian finansial yang timbul.',
                 'Konsultasikan dengan penasihat keuangan profesional sebelum mengambil keputusan.',
               ],
@@ -104,14 +104,14 @@ class DisclaimerPage extends StatelessWidget {
             _buildDisclaimerCard(
               icon: Icons.mosque_rounded,
               iconColor: MuamalahColors.halal,
-              title: 'Disclaimer Syariah',
+              title: 'Pernyataan Syariah',
               points: [
-                'Status halal/haram aset crypto dalam aplikasi ini berdasarkan kajian ilmiah yang bersifat ijtihadi.',
-                'Terdapat perbedaan pendapat di kalangan ulama mengenai hukum cryptocurrency.',
+                'Status halal/haram aset kripto dalam aplikasi ini berdasarkan kajian ilmiah yang bersifat ijtihadi.',
+                'Terdapat perbedaan pendapat di kalangan ulama mengenai hukum aset kripto.',
                 'Perhitungan zakat bersifat ESTIMASI dan bukan fatwa resmi.',
                 'Pastikan haul (kepemilikan 1 tahun) terpenuhi sebelum mengeluarkan zakat.',
                 'Konsultasikan dengan ulama atau lembaga fatwa terpercaya untuk keputusan syariah.',
-                'Kami tidak bertanggung jawab atas keputusan fiqh yang diambil berdasarkan aplikasi ini.',
+                'Kami tidak bertanggung jawab atas keputusan fikih yang diambil berdasarkan aplikasi ini.',
               ],
             ),
 
@@ -121,13 +121,13 @@ class DisclaimerPage extends StatelessWidget {
             _buildDisclaimerCard(
               icon: Icons.code_rounded,
               iconColor: const Color(0xFF6366F1),
-              title: 'Disclaimer Teknis',
+              title: 'Pernyataan Teknis',
               points: [
                 'Data harga dan portofolio diambil dari pihak ketiga dan mungkin tidak akurat 100%.',
-                'Aplikasi tidak menyimpan private key atau memiliki akses ke dana Anda.',
-                'Koneksi wallet bersifat read-only untuk melihat saldo saja.',
+                'Aplikasi tidak menyimpan kunci privat atau memiliki akses ke dana Anda.',
+                'Koneksi dompet bersifat hanya-baca untuk melihat saldo saja.',
                 'Aplikasi ini TIDAK DAPAT melakukan transaksi atau transfer aset.',
-                'Kami tidak bertanggung jawab atas ketidakakuratan data dari API pihak ketiga.',
+                'Kami tidak bertanggung jawab atas ketidakakuratan data dari layanan pihak ketiga.',
               ],
             ),
 

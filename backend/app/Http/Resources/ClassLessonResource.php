@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\LessonExerciseResource;
 
 class ClassLessonResource extends JsonResource
 {
@@ -19,6 +20,12 @@ class ClassLessonResource extends JsonResource
             'duration_min' => $this->duration_min,
             'content' => $this->content,
             'video_url' => $this->media_url,
+            'ayat_reference' => $this->ayat_reference,
+            'ayat_arabic' => $this->ayat_arabic,
+            'ayat_translation' => $this->ayat_translation,
+            'exercise' => $this->relationLoaded('exercise')
+                ? (new LessonExerciseResource($this->exercise))->resolve()
+                : null,
         ];
     }
 }

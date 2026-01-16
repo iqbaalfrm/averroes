@@ -40,7 +40,7 @@ class CoinGeckoApiClient {
       final response = await _client.get(uri, headers: _headers).timeout(
         Duration(seconds: timeoutSeconds),
         onTimeout: () {
-          throw TimeoutException('Koneksi timeout ($timeoutSeconds detik). Server lambat atau sinyal buruk.');
+          throw TimeoutException('Batas waktu koneksi habis ($timeoutSeconds detik). Server lambat atau sinyal buruk.');
         },
       );
 
@@ -60,7 +60,7 @@ class CoinGeckoApiClient {
         } else if (response.statusCode == 403 || response.statusCode == 401) {
           throw HttpException('Akses Ditolak (${response.statusCode}). Cek API Key atau Firewall.');
         } else if (response.statusCode >= 500) {
-          throw HttpException('Server Error (${response.statusCode}). CoinGecko sedang gangguan.');
+          throw HttpException('Kesalahan server (${response.statusCode}). CoinGecko sedang gangguan.');
         } else {
           throw HttpException('Gagal memuat data (${response.statusCode}).');
         }

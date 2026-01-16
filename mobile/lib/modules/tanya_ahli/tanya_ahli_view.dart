@@ -23,7 +23,7 @@ class TanyaAhliController extends GetxController {
   final RxList<Map<String, dynamic>> messages = <Map<String, dynamic>>[
     {
       'role': 'bot',
-      'text': 'Assalamualaikum! Saya Averroes AI. Silakan tanya apa saja mengenai Muamalah dan Crypto Syariah.',
+      'text': 'Assalamualaikum! Saya Averroes AI. Silakan tanya apa saja mengenai muamalah dan kripto syariah.',
       'time': 'Just now'
     },
     {
@@ -225,7 +225,7 @@ class TanyaAhliView extends GetView<TanyaAhliController> {
                           child: TextField(
                             controller: controller.textController,
                             decoration: const InputDecoration(
-                              hintText: 'Tanya tentang hukum crypto...',
+                              hintText: 'Tanya tentang hukum kripto...',
                               hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.symmetric(vertical: 14),

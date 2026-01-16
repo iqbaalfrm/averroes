@@ -169,7 +169,7 @@ class ReelsView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Filter Kategori',
+              'Saring Kategori',
               style: TextStyle(
                 color: Colors.white, 
                 fontSize: 20, 
@@ -180,7 +180,7 @@ class ReelsView extends StatelessWidget {
             Wrap(
               spacing: 12,
               runSpacing: 12,
-              children: ['Sabar', 'Fiqh Muamalah', 'Takdir', 'Acak'].map((cat) => 
+              children: ['Sabar', 'Fikih Muamalah', 'Takdir', 'Acak'].map((cat) => 
                 Obx(() {
                   final isSelected = controller.selectedCategory.value == cat;
                   return GestureDetector(
@@ -330,7 +330,7 @@ class ReelItemWidget extends StatelessWidget {
                  if (item.type == 'ayat') ...[
                    const SizedBox(height: 8),
                    const Text(
-                     'Sumber: Al-Qur’an (myQuran API)',
+                     "Sumber: Al-Qur'an (layanan myQuran)",
                      style: TextStyle(
                        fontSize: 10,
                        color: Colors.white54,
@@ -372,7 +372,7 @@ class ReelItemWidget extends StatelessWidget {
 
   List<Color> _getCategoryGradient(String category) {
     switch (category) {
-      case 'Fiqh Muamalah': return [const Color(0xFF0F2027), const Color(0xFF203A43), const Color(0xFF2C5364)];
+      case 'Fikih Muamalah': return [const Color(0xFF0F2027), const Color(0xFF203A43), const Color(0xFF2C5364)];
       case 'Takdir': return [const Color(0xFF141E30), const Color(0xFF243B55)];
       case 'Sabar': return [const Color(0xFF3E5151), const Color(0xFFDECBA4)];
       case 'Qonaah': return [const Color(0xFF232526), const Color(0xFF414345)];

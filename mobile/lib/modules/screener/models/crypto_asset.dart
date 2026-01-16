@@ -134,7 +134,7 @@ class CryptoAsset {
     final details = <String>[];
 
     if (underlying.isNotEmpty) {
-      details.add('Underlying: $underlying');
+      details.add('Dasar: $underlying');
     }
     if (nilaiYangJelas.isNotEmpty) {
       details.add('Nilai: $nilaiYangJelas');

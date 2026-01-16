@@ -66,6 +66,9 @@ dependencies:
   # XML parsing for RSS
   xml: ^6.5.0
   
+  # QR Code
+  qr_flutter: ^4.1.0
+
   # URL launcher for in-app browser
   url_launcher: ^6.3.1
   

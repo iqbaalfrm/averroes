@@ -91,7 +91,7 @@ class DiskusiRepository {
       id: row['id']?.toString() ?? '',
       title: row['title'] as String? ?? '',
       description: row['body'] as String? ?? '',
-      category: row['category'] as String? ?? 'Fiqh',
+      category: row['category'] as String? ?? 'Fikih',
       author: DiskusiUser(
         id: userId ?? 'anon',
         name: isAnonymous || userId == null ? 'Anonim' : 'Member',

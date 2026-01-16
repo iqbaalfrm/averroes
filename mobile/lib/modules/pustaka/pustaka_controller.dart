@@ -23,8 +23,8 @@ class PustakaController extends GetxController {
 
   final List<String> categories = [
     'Semua',
-    'Fiqh Muamalah',
-    'Crypto Syariah',
+    'Fikih Muamalah',
+    'Kripto Syariah',
     'Ekonomi Islam',
     'Referensi Ulama',
   ];

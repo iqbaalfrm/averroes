@@ -99,7 +99,7 @@ class PrivacyPolicyPage extends StatelessWidget {
 
             _buildSection(
               'Data yang Kami Kumpulkan',
-              '• **Alamat Wallet (Public Address)**: Alamat wallet blockchain Anda yang bersifat publik (0x...). '
+              '• **Alamat Dompet (Alamat Publik)**: Alamat dompet rantai blok Anda yang bersifat publik (0x...). '
               'Ini digunakan untuk menampilkan saldo dan portofolio Anda.\n\n'
               '• **Data Agregat**: Statistik penggunaan anonim untuk meningkatkan aplikasi.\n\n'
               '• **Preferensi Lokal**: Pengaturan aplikasi yang disimpan di perangkat Anda.',
@@ -107,8 +107,8 @@ class PrivacyPolicyPage extends StatelessWidget {
 
             _buildSection(
               'Data yang TIDAK Kami Kumpulkan',
-              '• ❌ Private Key / Seed Phrase\n'
-              '• ❌ Password atau PIN\n'
+              '• ❌ Kunci Privat / Frasa Pemulihan\n'
+              '• ❌ Kata Sandi atau PIN\n'
               '• ❌ Data biometrik\n'
               '• ❌ Informasi pribadi (nama, email, telepon)\n'
               '• ❌ Lokasi GPS',
@@ -116,19 +116,19 @@ class PrivacyPolicyPage extends StatelessWidget {
 
             _buildSection(
               'Penggunaan Data',
-              'Data alamat wallet Anda digunakan untuk:\n\n'
-              '• Menampilkan saldo token dari berbagai blockchain\n'
-              '• Menghitung estimasi zakat berdasarkan aset crypto\n'
+              'Data alamat dompet Anda digunakan untuk:\n\n'
+              '• Menampilkan saldo token dari berbagai rantai blok\n'
+              '• Menghitung estimasi zakat berdasarkan aset kripto\n'
               '• Menyediakan informasi harga pasar',
             ),
 
             _buildSection(
               'Layanan Pihak Ketiga',
               'Kami menggunakan layanan pihak ketiga berikut:\n\n'
-              '• **Covalent API**: Untuk mengambil data portofolio blockchain\n'
-              '• **CoinGecko API**: Untuk data harga cryptocurrency\n'
-              '• **Exchange Rate API**: Untuk konversi mata uang\n'
-              '• **WalletConnect**: Untuk koneksi wallet (opsional)\n\n'
+              '• **Layanan Covalent**: Untuk mengambil data portofolio rantai blok\n'
+              '• **Layanan CoinGecko**: Untuk data harga aset kripto\n'
+              '• **Layanan Kurs**: Untuk konversi mata uang\n'
+              '• **WalletConnect**: Untuk koneksi dompet (opsional)\n\n'
               'Setiap layanan memiliki kebijakan privasi tersendiri.',
             ),
 
@@ -136,14 +136,14 @@ class PrivacyPolicyPage extends StatelessWidget {
               'Keamanan Data',
               '• Data disimpan secara lokal di perangkat Anda\n'
               '• Tidak ada data sensitif yang dikirim ke server kami\n'
-              '• Komunikasi API menggunakan HTTPS terenkripsi\n'
-              '• Kami tidak memiliki akses ke wallet Anda',
+              '• Komunikasi layanan menggunakan HTTPS terenkripsi\n'
+              '• Kami tidak memiliki akses ke dompet Anda',
             ),
 
             _buildSection(
               'Hak Anda',
               '• Anda dapat menghapus data lokal kapan saja\n'
-              '• Anda dapat logout dan menghapus alamat wallet tersimpan\n'
+              '• Anda dapat keluar dan menghapus alamat dompet tersimpan\n'
               '• Anda dapat menggunakan aplikasi dalam mode Tamu',
             ),
 

@@ -23,7 +23,7 @@ return new class extends Migration
                 $table->string('cover_image_url')->nullable();
             }
             if (!Schema::hasColumn('articles', 'status')) {
-                $table->string('status')->default('published');
+                $table->string('status')->default('terbit');
             }
             if (!Schema::hasColumn('articles', 'created_by')) {
                 $table->uuid('created_by')->nullable();
@@ -42,7 +42,7 @@ return new class extends Migration
                 $table->string('short_desc')->nullable();
             }
             if (!Schema::hasColumn('classes', 'status')) {
-                $table->string('status')->default('published');
+                $table->string('status')->default('terbit');
             }
         });
 
@@ -58,7 +58,7 @@ return new class extends Migration
                 $table->string('cover_image_url')->nullable();
             }
             if (!Schema::hasColumn('books', 'status')) {
-                $table->string('status')->default('published');
+                $table->string('status')->default('terbit');
             }
         });
 
@@ -67,12 +67,27 @@ return new class extends Migration
                 $table->json('tags')->nullable();
             }
             if (!Schema::hasColumn('forum_threads', 'status')) {
-                $table->string('status')->default('open');
+                $table->string('status')->default('terbuka');
             }
         });
 
-        if (Schema::hasColumn('class_lessons', 'class_id')) {
-            DB::statement('update class_lessons cl set class_id = cm.class_id from class_modules cm where cl.module_id = cm.id and cl.class_id is null');
+        if (Schema::hasTable('class_lessons') && Schema::hasTable('class_modules') && Schema::hasColumn('class_lessons', 'class_id')) {
+            $driver = DB::getDriverName();
+            if ($driver === 'mysql') {
+                DB::statement(
+                    'update class_lessons cl
+                    join class_modules cm on cl.module_id = cm.id
+                    set cl.class_id = cm.class_id
+                    where cl.class_id is null'
+                );
+            } elseif ($driver === 'pgsql') {
+                DB::statement(
+                    'update class_lessons cl
+                    set class_id = cm.class_id
+                    from class_modules cm
+                    where cl.module_id = cm.id and cl.class_id is null'
+                );
+            }
         }
     }
 

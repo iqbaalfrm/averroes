@@ -3,21 +3,19 @@
 namespace App\Filament\Resources\PortfolioAssetResource\Pages;
 
 use App\Filament\Resources\PortfolioAssetResource;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Resources\Pages\CreateRecord;
-use Filament\Resources\Pages\EditRecord;
 
 class ListPortfolioAssets extends ListRecords
 {
     protected static string $resource = PortfolioAssetResource::class;
-}
+    protected static ?string $title = 'Aset Portofolio';
+    protected static ?string $breadcrumb = 'Aset Portofolio';
 
-class CreatePortfolioAsset extends CreateRecord
-{
-    protected static string $resource = PortfolioAssetResource::class;
-}
-
-class EditPortfolioAsset extends EditRecord
-{
-    protected static string $resource = PortfolioAssetResource::class;
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\CreateAction::make()->label('Tambah'),
+        ];
+    }
 }

@@ -3,56 +3,79 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\EdukasiClassResource\Pages;
-use App\Filament\Support\RoleHelper;
+use App\Filament\Resources\EdukasiClassResource\RelationManagers;
 use App\Models\EdukasiClass;
+use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TagsInput;
 use Filament\Resources\Resource;
+use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class EdukasiClassResource extends Resource
 {
     protected static ?string $model = EdukasiClass::class;
-    protected static ?string $navigationGroup = 'Edukasi';
-    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
-    protected static ?string $navigationLabel = 'Classes';
 
-    public static function canViewAny(): bool
-    {
-        return RoleHelper::hasRole(['admin', 'editor']);
-    }
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static ?string $navigationGroup = 'Edukasi';
+    protected static ?string $navigationLabel = 'Kelas Edukasi';
+    protected static ?string $modelLabel = 'Kelas Edukasi';
+    protected static ?string $pluralModelLabel = 'Kelas Edukasi';
+    protected static ?string $slug = 'kelas-edukasi';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title')->required(),
-                TextInput::make('subtitle'),
-                Select::make('level')
+                Forms\Components\TextInput::make('title')
+                    ->label('Judul')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('subtitle')
+                    ->label('Subjudul')
+                    ->maxLength(255)
+                    ->default(null),
+                Forms\Components\Select::make('level')
+                    ->label('Tingkat')
                     ->options([
-                        'Pemula' => 'Pemula',
-                        'Menengah' => 'Menengah',
-                        'Mahir' => 'Mahir',
+                        'pemula' => 'Pemula',
+                        'menengah' => 'Menengah',
+                        'mahir' => 'Mahir',
                     ])
+                    ->required()
+                    ->default('pemula'),
+                Forms\Components\TextInput::make('duration_text')
+                    ->label('Durasi')
+                    ->maxLength(255)
+                    ->default(null),
+                Forms\Components\TextInput::make('lessons_count')
+                    ->label('Jumlah Materi')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
+                Forms\Components\Textarea::make('description')
+                    ->label('Deskripsi')
+                    ->columnSpanFull(),
+                Forms\Components\Textarea::make('outcomes')
+                    ->label('Hasil Pembelajaran')
+                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('cover_theme')
+                    ->label('Tema Sampul')
+                    ->maxLength(255)
+                    ->default(null),
+                Forms\Components\TextInput::make('cover_image_url')
+                    ->label('Tautan Sampul')
+                    ->maxLength(255)
+                    ->default(null),
+                Forms\Components\Select::make('status')
+                    ->label('Status')
+                    ->options([
+                        'draf' => 'Draf',
+                        'terbit' => 'Terbit',
+                    ])
+                    ->default('terbit')
                     ->required(),
-                TextInput::make('duration_text')->label('Duration'),
-                TextInput::make('duration_minutes')->numeric(),
-                TextInput::make('lessons_count')->numeric(),
-                TextInput::make('short_desc')->label('Short Description'),
-                Textarea::make('description')->rows(3),
-                TagsInput::make('outcomes'),
-                TextInput::make('cover_theme'),
-                TextInput::make('cover_image_url')->label('Cover Image URL'),
-                Select::make('status')
-                    ->options([
-                        'draft' => 'Draft',
-                        'published' => 'Published',
-                    ])
-                    ->default('published'),
             ]);
     }
 
@@ -60,13 +83,59 @@ class EdukasiClassResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')->searchable(),
-                TextColumn::make('level')->sortable(),
-                TextColumn::make('duration_text')->label('Duration'),
-                TextColumn::make('lessons_count')->label('Lessons'),
-                TextColumn::make('created_at')->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('subtitle')
+                    ->label('Subjudul')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('level')
+                    ->label('Tingkat')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('duration_text')
+                    ->label('Durasi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('lessons_count')
+                    ->label('Jumlah Materi')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('created_at', 'desc');
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
     }
 
     public static function getPages(): array
@@ -74,6 +143,7 @@ class EdukasiClassResource extends Resource
         return [
             'index' => Pages\ListEdukasiClasses::route('/'),
             'create' => Pages\CreateEdukasiClass::route('/create'),
+            'view' => Pages\ViewEdukasiClass::route('/{record}'),
             'edit' => Pages\EditEdukasiClass::route('/{record}/edit'),
         ];
     }

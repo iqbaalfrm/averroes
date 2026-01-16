@@ -134,7 +134,7 @@ class BerandaView extends StatelessWidget {
                 child: Obx(() => Transform.rotate(
                   angle: 0.015,
                   child: _buildPrayerCard(
-                    title: "Jakarta ? ${prayerController.nextPrayerName.value}",
+                    title: "Jakarta - ${prayerController.nextPrayerName.value}",
                     time: prayerController.countdown.value,
                     isActive: true,
                     color: MuamalahColors.primaryEmerald,
@@ -148,7 +148,7 @@ class BerandaView extends StatelessWidget {
               Expanded(
                 flex: 7,
                 child: _buildPrayerCard(
-                  title: "Mekkah ? Isya",
+                  title: "Mekkah - Isya",
                   time: "19:45",
                   isActive: false,
                   color: MuamalahColors.neutral,
@@ -270,8 +270,8 @@ class BerandaView extends StatelessWidget {
                     Expanded(
                       flex: 13,
                       child: _buildFeatureTile(
-                        title: 'Screener',
-                        subtitle: 'Halal tracker',
+                        title: 'Penyaring Aset Syariah',
+                        subtitle: 'Pantau kepatuhan',
                         icon: Icons.filter_alt_rounded,
                         color: MuamalahColors.primaryEmerald,
                         height: 170,
@@ -314,7 +314,7 @@ class BerandaView extends StatelessWidget {
                           ),
                           const SizedBox(height: 12),
                           _buildFeatureTile(
-                            title: 'Pasar',
+                            title: 'Pasar Kripto',
                             subtitle: 'Harga & tren',
                             icon: Icons.candlestick_chart_rounded,
                             color: const Color(0xFF6366F1),
@@ -339,7 +339,7 @@ class BerandaView extends StatelessWidget {
                       flex: 11,
                       child: _buildFeatureTile(
                         title: 'Pustaka',
-                        subtitle: 'E-Library',
+                        subtitle: 'Pustaka',
                         icon: Icons.menu_book_rounded,
                         color: const Color(0xFF7C3AED),
                         height: 94,
@@ -356,7 +356,7 @@ class BerandaView extends StatelessWidget {
                     Expanded(
                       flex: 11,
                       child: _buildFeatureTile(
-                        title: 'Fatwa',
+                        title: 'Fatwa & Kajian',
                         subtitle: 'Panduan syariah',
                         icon: Icons.gavel_rounded,
                         color: const Color(0xFF1F2937),
@@ -404,8 +404,8 @@ class BerandaView extends StatelessWidget {
                       child: Column(
                         children: [
                           _buildFeatureTile(
-                            title: 'Psikologi',
-                            subtitle: 'Refleksi ringan',
+                        title: 'Psikologi Islami',
+                        subtitle: 'Refleksi ringan',
                             icon: Icons.psychology_alt_rounded,
                             color: const Color(0xFF10B981),
                             height: 78,
@@ -644,7 +644,7 @@ Widget _buildActionTile({
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "Fiqh Muamalah Dasar",
+                            "Fikih Muamalah Dasar",
                             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xFF92400E)),
                           ),
                           const SizedBox(height: 6),
@@ -680,7 +680,7 @@ Widget _buildActionTile({
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text(
-              "Berita & Insight",
+              "Berita & Wawasan",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -690,7 +690,7 @@ Widget _buildActionTile({
             GestureDetector(
               onTap: () => Get.to(() => const NewsPage()),
               child: const Text(
-                "Intip semua →",
+                "Lihat semua",
                 style: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,

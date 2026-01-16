@@ -10,6 +10,7 @@ import '../pustaka/pustaka_view.dart';
 import '../zakat/zakat_view.dart';
 import '../fatwa/fatwa_view.dart';
 import '../settings/settings_views.dart';
+import '../sertifikat/certificate_list_view.dart';
 
 /// =============================================================================
 /// PROFIL VIEW
@@ -175,7 +176,7 @@ class ProfilView extends StatelessWidget {
               children: [
                 _buildMenuItem(
                   icon: Icons.person_outline_rounded,
-                  title: 'Edit Profil',
+                  title: 'Ubah Profil',
                   iconColor: MuamalahColors.primaryEmerald,
                   onTap: () {
                     Get.snackbar(
@@ -191,12 +192,12 @@ class ProfilView extends StatelessWidget {
                 _buildDivider(),
                 _buildMenuItem(
                   icon: Icons.notifications_outlined,
-                  title: 'Notifikasi',
+                  title: 'Pemberitahuan',
                   iconColor: const Color(0xFFF59E0B),
                   onTap: () {
                     Get.snackbar(
                       'Segera Hadir',
-                      'Pengaturan notifikasi akan segera tersedia',
+                      'Pengaturan pemberitahuan akan segera tersedia',
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: MuamalahColors.primaryEmerald,
                       colorText: Colors.white,
@@ -382,13 +383,19 @@ class ProfilView extends StatelessWidget {
                 },
               ),
               _ShortcutChip(
-                label: 'Fatwa',
+                label: 'Fatwa & Kajian',
                 icon: Icons.gavel_rounded,
                 color: const Color(0xFF1F2937),
                 onTap: () => Get.to(() => const FatwaView()),
               ),
               _ShortcutChip(
-                label: 'Settings',
+                label: 'Sertifikat',
+                icon: Icons.verified_rounded,
+                color: MuamalahColors.halal,
+                onTap: () => Get.to(() => const CertificateListView()),
+              ),
+              _ShortcutChip(
+                label: 'Pengaturan',
                 icon: Icons.settings_rounded,
                 color: MuamalahColors.textMuted,
                 onTap: () => Get.to(() => const SettingsHomeView()),
@@ -433,7 +440,7 @@ class ProfilView extends StatelessWidget {
             Icon(Icons.login_rounded, size: 20),
             SizedBox(width: 10),
             Text(
-              'Login / Daftar',
+              'Masuk / Daftar',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -516,7 +523,7 @@ class ProfilView extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               const Text(
-                'Anda akan kembali ke halaman pilihan login.',
+                'Anda akan kembali ke halaman pilihan masuk.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
@@ -646,7 +653,7 @@ class ProfilView extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const Text(
-                'Crypto Syariah • Edukasi • Zakat',
+                'Kripto Syariah - Edukasi - Zakat',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
@@ -656,7 +663,7 @@ class ProfilView extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               const Text(
-                'Platform edukasi dan tools untuk memahami aset digital dari perspektif syariah.',
+                'Platform edukasi dan alat untuk memahami aset digital dari perspektif syariah.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 13,
